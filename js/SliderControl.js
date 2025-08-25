@@ -1,338 +1,326 @@
+/* SliderControl.js — Leaflet + jQuery UI time slider control
+ * Works with layers whose markers (or vector layers) carry a time property
+ * either in feature.properties[timeAttribute] or layer.options[timeAttribute].
+ * The time can be a string, a Date, or (if isEpoch=true) seconds/millis since epoch.
+ */
 L.Control.SliderControl = L.Control.extend({
-    options: {
-        position: 'topright',
-        layer: null,
-        timeAttribute: 'time',
-        isEpoch: false,     // whether the time attribute is seconds elapsed from epoch
-        startTimeIdx: 0,    // where to start looking for a timestring
-        timeStrLength: 19,  // the size of  yyyy-mm-dd hh:mm:ss - if millis are present this will be larger
-        maxValue: -1,
-        minValue: 0,
-        showAllOnStart: false,
-        markers: null,
-        range: false,
-        follow: 0,
-        sameDate: false,
-        alwaysShowDate : false,
-        rezoom: null,
-        orderMarkers: true,
-        orderDesc: false,
-        popupOptions: {},
-        popupContent: '',
-        showAllPopups: true,
-        showPopups: true,
-    },
+  options: {
+    position: 'topright',
+    layer: null,                 // L.LayerGroup or L.FeatureGroup with child layers
+    timeAttribute: 'time',       // property name carrying the time
+    isEpoch: false,              // if true, interpret numeric values as epoch (ms or s)
+    startTimeIdx: 0,             // substring start for display
+    timeStrLength: 19,           // substring length for display
+    maxValue: -1,
+    minValue: 0,
+    showAllOnStart: false,
+    markers: null,               // populated internally
+    range: false,                // use jQuery UI range mode
+    follow: 0,                   // if > 0, show trailing N steps up to value
+    sameDate: false,             // show all markers matching the same timestamp
+    alwaysShowDate: false,       // keep timestamp pill visible
+    rezoom: null,                // if set, fitBounds with this maxZoom on slide
+    orderMarkers: true,          // sort markers by time
+    orderDesc: false,            // reverse order
+    popupOptions: {},
+    popupContent: '',
+    showAllPopups: true,         // keep multiple popups open
+    showPopups: true             // open popups when markers shown
+  },
 
-    initialize: function (options) {
-        L.Util.setOptions(this, options);
-        this._layer = this.options.layer;
-        L.extend(this, L.Mixin.Events);
-    },
+  initialize: function (options) {
+    L.Util.setOptions(this, options);
+    this._layer = this.options.layer;
+    L.extend(this, L.Mixin.Events);
+  },
 
-    onAdd: function (map) {
-        this.options.map = map;
-        // Create a control sliderContainer with a jquery ui slider
-        this.container = L.DomUtil.create('div', '', this._container);
-        this.sliderBoxContainer = L.DomUtil.create('div', 'slider', this.container);
-        var sliderContainer = L.DomUtil.create('div', '', this.sliderBoxContainer);
-        sliderContainer.id = "leaflet-slider";
-        sliderContainer.style.width = "200px";
+  onAdd: function (map) {
+    this.options.map = map;
 
-        L.DomUtil.create('div', 'ui-slider-handle', sliderContainer);
-        this.timestampContainer = L.DomUtil.create('div', 'slider', this.container);
-        this.timestampContainer.id = "slider-timestamp";
-        this.timestampContainer.style.cssText = "width:200px; margin-top:3px; background-color:#FFFFFF; text-align:center; border-radius:5px;display:none;";
+    // Root container
+    this.container = L.DomUtil.create('div', 'leaflet-control-slider');
+    this.sliderBoxContainer = L.DomUtil.create('div', 'slider', this.container);
 
+    // Inner element jQuery UI will attach to
+    this.sliderContainer = L.DomUtil.create('div', '', this.sliderBoxContainer);
+    this.sliderContainer.id = 'leaflet-slider';
+    this.sliderContainer.style.width = '200px';
 
-        //Prevent map panning/zooming while using the slider
-        L.DomEvent.disableClickPropagation(this.sliderBoxContainer);
-        this._map.on('mouseup',this.clearTimestamp,this);
+    // Timestamp pill (hidden until needed unless alwaysShowDate)
+    this.timestampContainer = L.DomUtil.create('div', 'slider', this.container);
+    this.timestampContainer.id = 'slider-timestamp';
+    this.timestampContainer.style.cssText =
+      'width:200px;margin-top:3px;background-color:#FFFFFF;text-align:center;border-radius:5px;display:none;';
 
+    // Prevent map interactions while using the slider
+    L.DomEvent.disableClickPropagation(this.sliderBoxContainer);
+    this._map = map;
+    this._map.on('mouseup', this.clearTimestamp, this);
 
-        var options = this.options;
-        this.options.markers = [];
+    // Prepare markers array
+    var options = this.options;
+    options.markers = [];
 
-        function compare( a, b ) {
-            var valA = null;
-            var valB = null;
+    // Helper to compare two layers by their time value
+    function compare(a, b) {
+      var valA = getTimeValueFromLayer(a, options);
+      var valB = getTimeValueFromLayer(b, options);
+      if (valA == null || valB == null) return 0;
+      return valA < valB ? -1 : valA > valB ? 1 : 0;
+    }
 
-            if(a.feature && a.feature.properties && a.feature.properties[options.timeAttribute]){
-                valA = a.feature.properties[options.timeAttribute];
-            }else if(a.options[options.timeAttribute]){
-                valA = a.options[options.timeAttribute];
-            }
-            if(b.feature && b.feature.properties && b.feature.properties[options.timeAttribute]){
-                valB = b.feature.properties[options.timeAttribute];
-            }else if(b.options[options.timeAttribute]){
-                valB = b.options[options.timeAttribute];
-            }
-            if(valA && valB) {
-                if (valA < valB) {
-                    return -1;
-                }
-                if (valA > valB) {
-                    return 1;
-                }
-            }
-            return 0;
-        }
+    // Extracts comparable value (number) for sorting; falls back to string
+    function getTimeValueFromLayer(layer, opts) {
+      var raw = getRawTime(layer, opts);
+      if (raw == null) return null;
+      if (raw instanceof Date) return raw.getTime();
+      if (typeof raw === 'number') {
+        // If isEpoch=false but number appears epoch-like, still sortable
+        return raw < 1e12 ? raw * 1000 : raw; // seconds → ms heuristic
+      }
+      // string → Date.parse
+      var t = Date.parse(raw);
+      return isNaN(t) ? null : t;
+    }
 
-        //If a layer has been provided: calculate the min and max values for the slider
-        if (this._layer) {
-            var index_temp = 0;
-            var templayers = [];
-            this._layer.eachLayer(function (layer) {
-                templayers.push(layer);
-            });
+    if (this._layer) {
+      // Flatten any LayerGroups to a linear array
+      var tempLayers = [];
+      this._layer.eachLayer(function (layer) {
+        tempLayers.push(layer);
+      });
 
-            if(options.orderMarkers){
-                templayers = templayers.sort(compare);
+      if (options.orderMarkers) {
+        tempLayers = tempLayers.sort(compare);
+        if (options.orderDesc) tempLayers.reverse();
+      }
 
-                if(options.orderDesc){
-                    templayers = templayers.reverse();
-                }
-            }
-
-            var that = this;
-            templayers.forEach(function (layer){
-
-
-                if(layer instanceof L.LayerGroup) {
-                    layer.getLayers().forEach(function (l) {
-                        l = that._setPopupProperty(l);
-                    });
-                }else{
-                    layer = that._setPopupProperty(layer);
-                }
-                options.markers[index_temp] = layer;
-
-                ++index_temp;
-            });
-
-            options.maxValue = index_temp - 1;
-            this.options = options;
+      var that = this;
+      var idx = 0;
+      tempLayers.forEach(function (layer) {
+        if (layer instanceof L.LayerGroup) {
+          layer.getLayers().forEach(function (l) {
+            that._stashPopup(l);
+          });
         } else {
-            console.log("Error: You have to specify a layer via new SliderControl({layer: your_layer});");
+          that._stashPopup(layer);
         }
-        return this.container;
-    },
+        options.markers[idx++] = layer;
+      });
 
-    onRemove: function (map) {
-        //Delete all markers which where added via the slider and remove the slider div
-        for (i = this.options.minValue; i <= this.options.maxValue; i++) {
-            map.removeLayer(this.options.markers[i]);
+      options.maxValue = idx - 1;
+      this.options = options;
+    } else {
+      console.error('SliderControl: you must pass { layer: yourLayerGroup }');
+    }
+
+    return this.container;
+  },
+
+  onRemove: function (map) {
+    // Remove all markers that might have been added by slider
+    for (var i = this.options.minValue; i <= this.options.maxValue; i++) {
+      if (this.options.markers[i]) map.removeLayer(this.options.markers[i]);
+    }
+    if (this.container && this.container.parentNode) {
+      this.container.parentNode.removeChild(this.container);
+    }
+    if (this._map) {
+      this._map.off('mouseup', this.clearTimestamp, this);
+    }
+  },
+
+  startSlider: function () {
+    var _options = this.options;
+    var that = this;
+
+    var indexStart = _options.minValue;
+    if (_options.showAllOnStart) {
+      indexStart = _options.maxValue;
+      if (_options.range) _options.values = [_options.minValue, _options.maxValue];
+      else _options.value = _options.maxValue;
+    }
+
+    var timestampContainer = this.timestampContainer;
+
+    // Initialize jQuery UI slider on the INNER element
+    $(this.sliderContainer).slider({
+      range: _options.range,
+      value: _options.value,
+      values: _options.values,
+      min: _options.minValue,
+      max: _options.maxValue,
+      step: 1,
+      slide: function (_e, ui) {
+        var map = _options.map;
+        var fg = L.featureGroup();
+        var markersToShow = [];
+        var currentIdx = _options.range ? ui.values[1] : ui.value;
+
+        // Show timestamp
+        var ts = getRawTime(_options.markers[currentIdx], _options);
+        if (ts != null) {
+          timestampContainer.style.display = 'block';
+          $(timestampContainer).html(formatTimestamp(ts, _options));
         }
-        this.container.remove();
 
-        map.off('mouseup',this.clearTimestamp,this);
-
-    },
-
-    startSlider: function () {
-        var _options = this.options;
-        var _extractTimestamp = this.extractTimestamp;
-        var index_start = _options.minValue;
-        if(_options.showAllOnStart){
-            index_start = _options.maxValue;
-            if(_options.range) _options.values = [_options.minValue,_options.maxValue];
-            else _options.value = _options.maxValue;
+        // Clear all layers first
+        for (var i = _options.minValue; i <= _options.maxValue; i++) {
+          if (_options.markers[i]) map.removeLayer(_options.markers[i]);
         }
-        var timestampContainer = this.timestampContainer;
-        var that = this;
-        $(this.sliderBoxContainer).slider({
-            range: _options.range,
-            value: _options.value,
-            values: _options.values,
-            min: _options.minValue,
-            max: _options.maxValue,
-            sameDate: _options.sameDate,
-            step: 1,
-            slide: function (e, ui) {
-                var map = _options.map;
-                var fg = L.featureGroup();
-                if(!!_options.markers[ui.value]) {
-                    // If there is no time property, this line has to be removed (or exchanged with a different property)
-                    if(_options.markers[ui.value].feature !== undefined) {
-                        if(_options.markers[ui.value].feature.properties[_options.timeAttribute]){
-                            if(_options.markers[ui.value]){
-                                timestampContainer.style.display = "block";
-                                $(timestampContainer).html(_extractTimestamp(_options.markers[ui.value].feature.properties[_options.timeAttribute], _options));
-                            }
-                        }else {
-                            console.error("Time property "+ _options.timeAttribute +" not found in data");
-                        }
-                    }else {
-                        // set by leaflet Vector Layers
-                        if(_options.markers [ui.value].options[_options.timeAttribute]){
-                            if(_options.markers[ui.value]){
-                                timestampContainer.style.display = "block";
-                                $(timestampContainer).html( _extractTimestamp(_options.markers[ui.value].options[_options.timeAttribute], _options));
-                            }
-                        }else {
-                            console.error("Time property "+ _options.timeAttribute +" not found in data");
-                        }
-                    }
-                    var markers = [];
-                    var i;
-                    // clear markers
-                    for (i = _options.minValue; i <= _options.maxValue; i++) {
-                        if(_options.markers[i]) map.removeLayer(_options.markers[i]);
-                    }
-                    if(_options.range){
-                        // jquery ui using range
-                        for (i = ui.values[0]; i <= ui.values[1]; i++){
-                           if(_options.markers[i]) {
-                               markers.push(_options.markers[i]);
-                               map.addLayer(_options.markers[i]);
-                               fg.addLayer(_options.markers[i]);
-                           }
-                        }
-                    }else if(_options.follow > 0){
-                        for (i = ui.value - _options.follow + 1; i <= ui.value ; i++) {
-                            if(_options.markers[i]) {
-                                markers.push(_options.markers[i]);
-                                map.addLayer(_options.markers[i]);
-                                fg.addLayer(_options.markers[i]);
-                            }
-                        }
-                    }else if(_options.sameDate){
-                        var currentTime;
-                        if (_options.markers[ui.value].feature !== undefined) {
-                            currentTime = _options.markers[ui.value].feature.properties.time;
-                        } else {
-                            currentTime = _options.markers[ui.value].options.time;
-                        }
-                        for (i = _options.minValue; i <= _options.maxValue; i++) {
-                            if(_options.markers[i].options.time == currentTime){
-                                markers.push(_options.markers[i]);
-                                map.addLayer(_options.markers[i]);
-                            }
-                        }
-                    }else{
-                        for (i = _options.minValue; i <= ui.value ; i++) {
-                            if(_options.markers[i]) {
-                                markers.push(_options.markers[i]);
-                                map.addLayer(_options.markers[i]);
-                                fg.addLayer(_options.markers[i]);
-                            }
-                        }
-                    }
 
-                    if(_options.showPopups) {
-                        that._openPopups(markers);
-                    }
-                    that.fire('rangechanged',{
-                        markers: markers,
-                    });
-                }
-                if(_options.rezoom) {
-                    map.fitBounds(fg.getBounds(), {
-                        maxZoom: _options.rezoom
-                    });
-                }
+        if (_options.range) {
+          for (var r = ui.values[0]; r <= ui.values[1]; r++) {
+            if (_options.markers[r]) {
+              markersToShow.push(_options.markers[r]);
+              map.addLayer(_options.markers[r]); fg.addLayer(_options.markers[r]);
             }
-        });
-        if (_options.alwaysShowDate) {
-            timestampContainer.style.display = "block";
-
-            if(_options.markers[index_start].feature !== undefined) {
-                if(_options.markers[index_start].feature.properties[_options.timeAttribute]){
-                    if(_options.markers[index_start]){
-                        timestampContainer.style.display = "block";
-                        $(timestampContainer).html(_extractTimestamp(_options.markers[index_start].feature.properties[_options.timeAttribute], _options));
-                    }
-                }else {
-                    console.error("Time property "+ _options.timeAttribute +" not found in data");
-                }
-            }else {
-                // set by leaflet Vector Layers
-                if(_options.markers [index_start].options[_options.timeAttribute]){
-                    if(_options.markers[index_start]){
-                        timestampContainer.style.display = "block";
-                        $(timestampContainer).html( _extractTimestamp(_options.markers[index_start].options[_options.timeAttribute], _options));
-                    }
-                }else {
-                    console.error("Time property "+ _options.timeAttribute +" not found in data");
-                }
+          }
+        } else if (_options.follow > 0) {
+          for (var f = currentIdx - _options.follow + 1; f <= currentIdx; f++) {
+            if (_options.markers[f]) {
+              markersToShow.push(_options.markers[f]);
+              map.addLayer(_options.markers[f]); fg.addLayer(_options.markers[f]);
             }
-        }
-        var markers = [];
-        for (i = _options.minValue; i <= index_start; i++) {
-            markers.push(_options.markers[i]);
-            _options.map.addLayer(_options.markers[i]);
-        }
-        if(_options.showPopups) {
-            this._openPopups(markers);
-        }
-        this.fire('rangechanged',{
-            markers: markers,
-        });
-    },
-    clearTimestamp: function(){
-        //Hide the slider timestamp if not range and option alwaysShowDate is set on false
-        if (!this.options.alwaysShowDate) {
-            this.timestampContainer.innerHTML = "";
-            this.timestampContainer.style.display = "none";
-        }
-    },
-
-    extractTimestamp: function(time, options) {
-        if (options.isEpoch) {
-            time = (new Date(parseInt(time))).toString(); // this is local time
-        }
-        return time.substr(options.startTimeIdx, options.startTimeIdx + options.timeStrLength);
-    },
-
-    setPosition: function (position) {
-        var map = this._map;
-
-        if (map) {
-            map.removeControl(this);
-        }
-
-        this.options.position = position;
-
-        if (map) {
-            map.addControl(this);
-        }
-        this.startSlider();
-        return this;
-    },
-
-    _setPopupProperty: function(marker){
-        if (marker._popup) {
-            marker._orgpopup = marker._popup;
-        }
-        return marker;
-    },
-
-    _openPopups: function(markers) {
-        var options = this.options;
-        var that = this;
-        markers.forEach(function (marker) {
-            if(marker instanceof L.LayerGroup){
-                that._openPopups(marker.getLayers());
-            }else {
-                if (marker._orgpopup) {
-                    marker._popup = marker._orgpopup;
-                    if (options.showAllPopups) {
-                        marker._popup.options.autoClose = false;
-                    }
-                    marker.openPopup();
-                } else if (options.popupContent) {
-                    var popupOptions = options.popupOptions;
-                    if (options.showAllPopups) {
-                        popupOptions.autoClose = false;
-                    }
-                    marker.bindPopup(options.popupContent, popupOptions).openPopup();
-                }
+          }
+        } else if (_options.sameDate) {
+          var curTime = getRawTimeValue(_options.markers[currentIdx], _options);
+          for (var s = _options.minValue; s <= _options.maxValue; s++) {
+            if (getRawTimeValue(_options.markers[s], _options) === curTime) {
+              markersToShow.push(_options.markers[s]);
+              map.addLayer(_options.markers[s]); fg.addLayer(_options.markers[s]);
             }
-        });
-    },
+          }
+        } else {
+          for (var k = _options.minValue; k <= currentIdx; k++) {
+            if (_options.markers[k]) {
+              markersToShow.push(_options.markers[k]);
+              map.addLayer(_options.markers[k]); fg.addLayer(_options.markers[k]);
+            }
+          }
+        }
 
+        if (_options.showPopups) that._openPopups(markersToShow);
+        that.fire('rangechanged', { markers: markersToShow });
+
+        if (_options.rezoom && fg.getLayers().length) {
+          map.fitBounds(fg.getBounds(), { maxZoom: _options.rezoom });
+        }
+      }
+    });
+
+    // Initial timestamp pill (if requested)
+    if (_options.alwaysShowDate && _options.markers[indexStart]) {
+      var initialTs = getRawTime(_options.markers[indexStart], _options);
+      if (initialTs != null) {
+        timestampContainer.style.display = 'block';
+        $(timestampContainer).html(formatTimestamp(initialTs, _options));
+      }
+    }
+
+    // Show initial set of markers
+    var initialMarkers = [];
+    for (var i = _options.minValue; i <= indexStart; i++) {
+      if (_options.markers[i]) {
+        initialMarkers.push(_options.markers[i]);
+        _options.map.addLayer(_options.markers[i]);
+      }
+    }
+    if (_options.showPopups) this._openPopups(initialMarkers);
+    this.fire('rangechanged', { markers: initialMarkers });
+  },
+
+  clearTimestamp: function () {
+    if (!this.options.alwaysShowDate) {
+      this.timestampContainer.innerHTML = '';
+      this.timestampContainer.style.display = 'none';
+    }
+  },
+
+  setPosition: function (position) {
+    var map = this._map;
+    if (map) map.removeControl(this);
+    this.options.position = position;
+    if (map) map.addControl(this);
+    this.startSlider();
+    return this;
+  },
+
+  // Preserve original popup so we can reopen later
+  _stashPopup: function (marker) {
+    if (marker && marker._popup) marker._orgpopup = marker._popup;
+    return marker;
+  },
+
+  _openPopups: function (markers) {
+    var options = this.options;
+    var that = this;
+    markers.forEach(function (m) {
+      if (!m) return;
+      if (m instanceof L.LayerGroup) {
+        that._openPopups(m.getLayers());
+        return;
+      }
+      if (m._orgpopup) {
+        m._popup = m._orgpopup;
+        if (options.showAllPopups) m._popup.options.autoClose = false;
+        m.openPopup();
+      } else if (options.popupContent) {
+        var popupOptions = L.Util.extend({}, options.popupOptions);
+        if (options.showAllPopups) popupOptions.autoClose = false;
+        m.bindPopup(options.popupContent, popupOptions).openPopup();
+      }
+    });
+  }
 });
 
+/* --------- helper functions (module-local) --------- */
 
+// Get the raw time value (string | Date | number) from a layer
+function getRawTime(layer, options) {
+  if (!layer) return null;
+  var t = null;
+  if (layer.feature && layer.feature.properties && layer.feature.properties[options.timeAttribute] != null) {
+    t = layer.feature.properties[options.timeAttribute];
+  } else if (layer.options && layer.options[options.timeAttribute] != null) {
+    t = layer.options[options.timeAttribute];
+  }
+  return t;
+}
+
+// Get a canonical scalar time value for equality checks (stringified)
+function getRawTimeValue(layer, options) {
+  var t = getRawTime(layer, options);
+  if (t instanceof Date) return t.toISOString();
+  if (typeof t === 'number') return options.isEpoch ? normalizeEpoch(t).toISOString() : new Date(t).toISOString();
+  return String(t);
+}
+
+// Normalize epoch seconds/millis to Date
+function normalizeEpoch(n) {
+  // treat <1e12 as seconds; >=1e12 as millis
+  if (n < 1e12) n = n * 1000;
+  return new Date(n);
+}
+
+// Formats the timestamp for display in the pill
+function formatTimestamp(time, options) {
+  var s;
+  if (time instanceof Date) {
+    s = time.toISOString();
+  } else if (typeof time === 'number') {
+    // if isEpoch, interpret as epoch; otherwise assume millis
+    s = (options.isEpoch ? normalizeEpoch(time) : new Date(time)).toISOString();
+  } else {
+    s = String(time);
+  }
+  // substring display if requested
+  var start = options.startTimeIdx || 0;
+  var len = options.timeStrLength || s.length;
+  return s.substr(start, len);
+}
+
+// Factory
 L.control.sliderControl = function (options) {
-    return new L.Control.SliderControl(options);
+  return new L.Control.SliderControl(options);
 };
