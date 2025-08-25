@@ -15,6 +15,7 @@
       "use_case": "AI-powered platform to optimise the scheduling and operation of its electric ferry fleet",
       "mode": "waterborne",
       "motivation": "greater efficiency and an improved customer experience",
+      "stakeholder": "Hadag (the operator of Hamburg’s ferry services)",
       "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/hamburg-deploys-ai-boost-efficiency-electric-ferry-fleet-2025-07-11_en"
     },
     "year": 2024
@@ -35,6 +36,7 @@
       "use_case": "AI-driven managed services solution for monitoring the charging infrastructure of an electric bus fleet",
       "mode": "road",
       "motivation": "reduce energy expenses, lower the cost per mile, and increase route completion rates, making fleet operations more streamlined and sustainable",
+      "stakeholder": "the Greater Oslo region",
       "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/data-driven-technology-powers-oslos-sustainable-electric-bus-fleet-2024-11-13_en?prefLang=de"
     },
     "year": 2024
@@ -55,6 +57,7 @@
       "use_case": "Intelligent traffic light system",
       "mode": "road",
       "motivation": "improve traffic flow, increase road safety and reduce air pollution",
+      "stakeholder": "the city",
       "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/bucharest-continues-make-its-traffic-light-system-smarter-2023-02-27_en"
     },
     "year": 2023
@@ -75,6 +78,7 @@
       "use_case": "Integrated AI-driven analytics for Sustainable Urban Mobility Plan (SUMP) monitoring",
       "mode": "cross_modal",
       "motivation": "enhances the city’s ability to monitor dynamic indicators like congestion levels and air quality in real-time, providing a detailed view of the urban mobility landscape",
+      "stakeholder": null,
       "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/strengthening-sump-monitoring-best-practices-and-pilot-initiatives-across-europe-2024-08-30_en"
     },
     "year": 2024
@@ -95,6 +99,7 @@
       "use_case": "AI-powered digital twin ",
       "mode": "road",
       "motivation": "enables advanced traffic simulations and predictive analysis, helping to optimise traffic flow and reduce congestion",
+      "stakeholder": "city planners",
       "link": "https://urban-mobility-observatory.transport.ec.europa.eu/resources/case-studies/digital-twins-lessons-learned-city-aachen_en"
     },
     "year": 2024
@@ -115,6 +120,7 @@
       "use_case": "AI-embedded conflict resolution for drones",
       "mode": "air",
       "motivation": null,
+      "stakeholder": "TINDAiR consortium",
       "link": "https://urban-mobility-observatory.transport.ec.europa.eu/resources/case-studies/latest-developments-and-social-acceptance-drones-part-urban-air-mobility_en"
     },
     "year": 2021
@@ -135,6 +141,7 @@
       "use_case": "AI-embedded conflict resolution for drones",
       "mode": "air",
       "motivation": null,
+      "stakeholder": "TINDAiR consortium",
       "link": "https://urban-mobility-observatory.transport.ec.europa.eu/resources/case-studies/latest-developments-and-social-acceptance-drones-part-urban-air-mobility_en"
     },
     "year": 2023
