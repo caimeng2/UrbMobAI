@@ -167,6 +167,9 @@
 
               // 7) Initialize sliderControl
               var multi = L.layerGroup(layers);
+
+              map.addLayer(multi);
+
               var slider = L.control.sliderControl({
                 layer: multi,
                 alwaysShowDate: true,
