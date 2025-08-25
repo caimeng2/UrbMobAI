@@ -55,6 +55,17 @@ L.Control.SliderControl = L.Control.extend({
     var options = this.options;
     options.markers = [];
 
+    function getTimeValueFromLayer(layer, options) {
+      var raw = getRawTime(layer, options);
+      if (raw == null) return null;
+      if (raw instanceof Date) return raw.getTime();
+      if (typeof raw === 'number') {
+        return raw < 1e12 ? raw * 1000 : raw;
+      }
+      var t = Date.parse(raw);
+      return isNaN(t) ? null : t;
+    }
+
     function compare(a, b) {
       var valA = getTimeValueFromLayer(a, options);
       var valB = getTimeValueFromLayer(b, options);
@@ -259,7 +270,7 @@ function normalizeEpoch(n) {
   return new Date(n);
 }
 
-// >>> Only change needed: force timestamp pill to show year only <<<
+// force timestamp pill to show year only
 function formatTimestamp(time, options) {
   let d;
   if (time instanceof Date) {
@@ -272,7 +283,7 @@ function formatTimestamp(time, options) {
     d = new Date(time);
   }
   if (!d || isNaN(d.getTime())) return '';
-  return String(d.getUTCFullYear()); // <- ONLY year
+  return String(d.getUTCFullYear());
 }
 
 L.control.sliderControl = function (options) {
