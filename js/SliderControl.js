@@ -305,20 +305,18 @@ function normalizeEpoch(n) {
 
 // Formats the timestamp for display in the pill
 function formatTimestamp(time, options) {
-  var s;
+  let d;
   if (time instanceof Date) {
-    s = time.toISOString();
+    d = time;
   } else if (typeof time === 'number') {
-    // if isEpoch, interpret as epoch; otherwise assume millis
-    s = (options.isEpoch ? normalizeEpoch(time) : new Date(time)).toISOString();
-  } else {
-    s = String(time);
+    // If isEpoch, interpret as epoch; otherwise assume millis
+    d = options.isEpoch ? normalizeEpoch(time) : new Date(time);
+  } else if (typeof time === 'string') {
+    // string can be "YYYY", "YYYY-MM-DD", ISO, etc.
+    const yMatch = time.match(/^(\d{4})/);
+    if (yMatch) return yMatch[1];   // <-- return the first 4 chars if they are a year
+    d = new Date(time);
   }
-  // substring display if requested
-  var start = options.startTimeIdx || 0;
-  var len = options.timeStrLength || s.length;
-  return s.substr(start, len);
-}
 
 // Factory
 L.control.sliderControl = function (options) {
