@@ -114,7 +114,7 @@
       "country": "France",
       "use_case": "AI-embedded conflict resolution for drones",
       "mode": "air",
-      "motivation": NaN,
+      "motivation": null,
       "link": "https://urban-mobility-observatory.transport.ec.europa.eu/resources/case-studies/latest-developments-and-social-acceptance-drones-part-urban-air-mobility_en"
     },
     "year": 2021
@@ -134,7 +134,7 @@
       "country": "France",
       "use_case": "AI-embedded conflict resolution for drones",
       "mode": "air",
-      "motivation": NaN,
+      "motivation": null,
       "link": "https://urban-mobility-observatory.transport.ec.europa.eu/resources/case-studies/latest-developments-and-social-acceptance-drones-part-urban-air-mobility_en"
     },
     "year": 2023
