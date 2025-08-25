@@ -1,86 +1,142 @@
 [
   {
-    "id": "euumo000002",
-    "latitude": 53.550341,
-    "longitude": 10.000654,
-    "year": 2024.0,
-    "city": "Hamburg",
-    "country": "Germany",
-    "use_case": "AI-powered platform to optimise the scheduling and operation of its electric ferry fleet",
-    "mode": "waterborne",
-    "motivation": "greater efficiency and an improved customer experience",
-    "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/hamburg-deploys-ai-boost-efficiency-electric-ferry-fleet-2025-07-11_en"
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        10.000654,
+        53.550341
+      ]
+    },
+    "properties": {
+      "id": "euumo000002",
+      "city": "Hamburg",
+      "country": "Germany",
+      "use_case": "AI-powered platform to optimise the scheduling and operation of its electric ferry fleet",
+      "mode": "waterborne",
+      "motivation": "greater efficiency and an improved customer experience",
+      "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/hamburg-deploys-ai-boost-efficiency-electric-ferry-fleet-2025-07-11_en"
+    },
+    "year": 2024
   },
   {
-    "id": "euumo000004",
-    "latitude": 59.9133301,
-    "longitude": 10.7389701,
-    "year": 2024.0,
-    "city": "Oslo",
-    "country": "Norway",
-    "use_case": "AI-driven managed services solution for monitoring the charging infrastructure of an electric bus fleet",
-    "mode": "road",
-    "motivation": "reduce energy expenses, lower the cost per mile, and increase route completion rates, making fleet operations more streamlined and sustainable",
-    "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/data-driven-technology-powers-oslos-sustainable-electric-bus-fleet-2024-11-13_en?prefLang=de"
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        10.7389701,
+        59.9133301
+      ]
+    },
+    "properties": {
+      "id": "euumo000004",
+      "city": "Oslo",
+      "country": "Norway",
+      "use_case": "AI-driven managed services solution for monitoring the charging infrastructure of an electric bus fleet",
+      "mode": "road",
+      "motivation": "reduce energy expenses, lower the cost per mile, and increase route completion rates, making fleet operations more streamlined and sustainable",
+      "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/data-driven-technology-powers-oslos-sustainable-electric-bus-fleet-2024-11-13_en?prefLang=de"
+    },
+    "year": 2024
   },
   {
-    "id": "euumo000005",
-    "latitude": 44.4361414,
-    "longitude": 26.1027202,
-    "year": 2023.0,
-    "city": "Bucharest",
-    "country": "Romania",
-    "use_case": "intelligent traffic light system",
-    "mode": "road",
-    "motivation": "improve traffic flow, increase road safety and reduce air pollution",
-    "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/bucharest-continues-make-its-traffic-light-system-smarter-2023-02-27_en"
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        26.1027202,
+        44.4361414
+      ]
+    },
+    "properties": {
+      "id": "euumo000005",
+      "city": "Bucharest",
+      "country": "Romania",
+      "use_case": "Intelligent traffic light system",
+      "mode": "road",
+      "motivation": "improve traffic flow, increase road safety and reduce air pollution",
+      "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/bucharest-continues-make-its-traffic-light-system-smarter-2023-02-27_en"
+    },
+    "year": 2023
   },
   {
-    "id": "euumo000014",
-    "latitude": 41.3825802,
-    "longitude": 2.177073,
-    "year": 2024.0,
-    "city": "Barcelona",
-    "country": "Spain",
-    "use_case": "Integrated AI-driven analytics for Sustainable Urban Mobility Plan (SUMP) monitoring",
-    "mode": "cross_modal",
-    "motivation": "enhances the city’s ability to monitor dynamic indicators like congestion levels and air quality in real-time, providing a detailed view of the urban mobility landscape",
-    "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/strengthening-sump-monitoring-best-practices-and-pilot-initiatives-across-europe-2024-08-30_en"
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        2.177073,
+        41.3825802
+      ]
+    },
+    "properties": {
+      "id": "euumo000014",
+      "city": "Barcelona",
+      "country": "Spain",
+      "use_case": "Integrated AI-driven analytics for Sustainable Urban Mobility Plan (SUMP) monitoring",
+      "mode": "cross_modal",
+      "motivation": "enhances the city’s ability to monitor dynamic indicators like congestion levels and air quality in real-time, providing a detailed view of the urban mobility landscape",
+      "link": "https://urban-mobility-observatory.transport.ec.europa.eu/news-events/news/strengthening-sump-monitoring-best-practices-and-pilot-initiatives-across-europe-2024-08-30_en"
+    },
+    "year": 2024
   },
   {
-    "id": "euumo000016",
-    "latitude": 50.776351,
-    "longitude": 6.083862,
-    "year": 2024.0,
-    "city": "Aachen",
-    "country": "Germany",
-    "use_case": "AI-powered digital twin ",
-    "mode": "road",
-    "motivation": "enables advanced traffic simulations and predictive analysis, helping to optimise traffic flow and reduce congestion",
-    "link": "https://urban-mobility-observatory.transport.ec.europa.eu/resources/case-studies/digital-twins-lessons-learned-city-aachen_en"
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        6.083862,
+        50.776351
+      ]
+    },
+    "properties": {
+      "id": "euumo000016",
+      "city": "Aachen",
+      "country": "Germany",
+      "use_case": "AI-powered digital twin ",
+      "mode": "road",
+      "motivation": "enables advanced traffic simulations and predictive analysis, helping to optimise traffic flow and reduce congestion",
+      "link": "https://urban-mobility-observatory.transport.ec.europa.eu/resources/case-studies/digital-twins-lessons-learned-city-aachen_en"
+    },
+    "year": 2024
   },
   {
-    "id": "euumo000017",
-    "latitude": 43.6044622,
-    "longitude": 1.4442469,
-    "year": 2021.0,
-    "city": "Toulouse",
-    "country": "France",
-    "use_case": "AI-embedded conflict resolution for drones",
-    "mode": "air",
-    "motivation": NaN,
-    "link": "https://urban-mobility-observatory.transport.ec.europa.eu/resources/case-studies/latest-developments-and-social-acceptance-drones-part-urban-air-mobility_en"
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        1.4442469,
+        43.6044622
+      ]
+    },
+    "properties": {
+      "id": "euumo000017",
+      "city": "Toulouse",
+      "country": "France",
+      "use_case": "AI-embedded conflict resolution for drones",
+      "mode": "air",
+      "motivation": NaN,
+      "link": "https://urban-mobility-observatory.transport.ec.europa.eu/resources/case-studies/latest-developments-and-social-acceptance-drones-part-urban-air-mobility_en"
+    },
+    "year": 2021
   },
   {
-    "id": "euumo000021",
-    "latitude": 44.841225,
-    "longitude": -0.5800364,
-    "year": 2023.0,
-    "city": "Bordeaux",
-    "country": "France",
-    "use_case": "AI-embedded conflict resolution for drones",
-    "mode": "air",
-    "motivation": NaN,
-    "link": "https://urban-mobility-observatory.transport.ec.europa.eu/resources/case-studies/latest-developments-and-social-acceptance-drones-part-urban-air-mobility_en"
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -0.5800364,
+        44.841225
+      ]
+    },
+    "properties": {
+      "id": "euumo000021",
+      "city": "Bordeaux",
+      "country": "France",
+      "use_case": "AI-embedded conflict resolution for drones",
+      "mode": "air",
+      "motivation": NaN,
+      "link": "https://urban-mobility-observatory.transport.ec.europa.eu/resources/case-studies/latest-developments-and-social-acceptance-drones-part-urban-air-mobility_en"
+    },
+    "year": 2023
   }
 ]
