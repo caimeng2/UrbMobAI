@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>AI in Urban Mobility</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!--jquery js-->
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <!--jQuery UI files-->
+        <link rel="stylesheet" href="./css/jquery-ui.css" />
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+        <!--jQuery UI Touch js, required for touchscreen use-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <!-- leaflet files -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+        <!--Leaflet Time-Slider module js adapted from Brian Geyer (https://github.com/geyerbri) with thanks; find maintained version at https://github.com/geyerbri/LeafletSlider-->
+        <script src="js/SliderControl.js"></script>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">AI in Urban Mobility: A Living Archive</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about"><b>About</b></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#map"><b>Map</b></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#data"><b>Data</b></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact"><b>Contact</b></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+                        <h1 class="mx-auto my-0"><b>AI in Urban Mobility</b></h1>
+                        <h2 class="text-white-58 mx-auto mt-2 mb-5">A living archive</h2>
+                        <a class="btn btn-primary" href="#about">More</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- About-->
+        <section class="about-section text-center" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-10">
+                        <h2 class="text-white mb-5">About this work</h2>
+                        <p class="text-white-80 mb-3" align="left">
+                          Artificial intelligence is reshaping how cities move.
+                          While there has been plenty of discussion about AI technologies and their applications, it has been harder to see the bigger picture: where, when, how, why, and by whom AI is being adopted in urban transportation systems.
+                        </p>
+                        <p class="text-white-80 mb-3" align="left">
+                          This project brings that picture into focus. Here we track:
+                        </p>
+                        <ul class="text-white-80 mb-3" align="left">
+                          <li>Where AI is being implemented geographically</li>
+                          <li>When adoption is taking place</li>
+                          <li>How AI is integrated (i.e., use cases)</li>
+                          <li>Which transportation modes are involved</li>
+                          <li>Who the key stakeholders are driving change</li>
+                        </ul>
+                        <p class="text-white-80 mb-3" align="left">
+                          The map and dataset are updated regularly starting from September 2025 and serves as a living archive of AI adoption in urban mobility.
+                        </p>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map-->
+        <section class="map-section text-center">
+          <div id="map" style="height:800px"></div>
+
+          <!-- Add these scripts after including Leaflet, jQuery, and sliderControl -->
+          <script>
+            // 1) Initialize map on Europe
+            var map = L.map('map', {
+              minZoom: 4,
+              maxZoom: 10,
+              scrollWheelZoom: false
+            }).setView([54, 10], 4);
+
+            L.tileLayer(
+              'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution:
+                  '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, ' +
+                  '&copy; <a href="https://carto.com/">CARTO</a>'
+              }
+            ).addTo(map);
+
+            // 2) Custom marker icon
+            var myicon = L.icon({
+              iconUrl: './assets/img/pin.svg',
+              iconSize: [20, 40]
+            });
+
+            // 3) Popup content
+            function onEachFeature(feature, layer) {
+              var p = feature.properties;
+              var html = '<div>' +
+                           '<h5>' + p.city + ', ' + p.country + '</h5>' +
+                           '<p>' +
+                             '<strong>Use case:</strong> ' + p.use_case + '<br/>' +
+                             '<strong>Mode:</strong> '     + p.mode     + '<br/>' +
+                             '<strong>Motivation:</strong> ' + p.motivation + '<br/>' +
+                             '<a href="' + p.link + '" target="_blank">Source</a>' +
+                           '</p>' +
+                         '</div>';
+              layer.bindPopup(html, {closeButton: true});
+            }
+
+            // 4) Load all JSON files listed in manifest.json
+            async function loadAllData() {
+              // fetch manifest.json
+              var files = await fetch('assets/data/manifest.json')
+                                .then(res => res.json());
+
+              var allFeatures = [];
+              for (var fname of files) {
+                if (!fname.endsWith('.json')) continue;
+                var data = await fetch('assets/data/' + fname).then(r => r.json());
+                // each file is an array of point‐features
+                Array.prototype.push.apply(allFeatures, data);
+              }
+
+              // 5) Group features by integer year
+              var byYear = {};
+              allFeatures.forEach(f => {
+                var y = Math.floor(+f.year);
+                byYear[y] = byYear[y] || [];
+                byYear[y].push(f);
+              });
+
+              // 6) Build one L.geoJSON layer per year
+              var layers = Object.keys(byYear)
+                .sort()
+                .map(year => {
+                  var layer = L.geoJSON(byYear[year], {
+                    pointToLayer: (feat, latlng) => L.marker(latlng, {icon: myicon}),
+                    onEachFeature: onEachFeature
+                  });
+                  // sliderControl reads layer.options.time as a Date
+                  layer.options.time = new Date(year, 0, 1);
+                  return layer;
+                });
+
+              // 7) Initialize sliderControl
+              var multi = L.layerGroup(layers);
+              var slider = L.control.sliderControl({
+                layer: multi,
+                alwaysShowDate: true,
+                showPopups: false,
+                formatOutput: dt => dt.getFullYear()
+              });
+              map.addControl(slider);
+              slider.startSlider();
+            }
+
+            loadAllData().catch(console.error);
+          </script>
+        </section>
+
+        <!-- Data-->
+        <section class="data-section bg-mine text-center" id="data">
+          <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-lg-10">
+                <h2 class="text-white mb-4">Data</h2>
+                <p class="text-white-80 mb-3">
+                  You can download the data in JSON format <a href="https://github.com/caimeng2/" target="_blank">here</a> and use it for your own project.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact-->
+        <section class="contact-section bg-mine text-center" id="contact">
+            <div class="container px-4 px-lg-5">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="col-lg-10">
+                      <h2 class="text-white mb-4">Contact</h2>
+                      <p class="text-white-80 mb-3" align="center">
+                      mengcai24601(at)gmail(dot)com
+                      </p>
+                  </div>
+                </div>
+              </div>
+              <div class="social d-flex justify-content-center">
+                <a class="mx-2" href="https://github.com/caimeng2/" target="_blank"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-mine small text-center text-white-50">
+          <div class="container px-4 px-lg-5">Copyright &copy; Meng Cai 2025</div>
+          <div class="container px-4 px-lg-5"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" target="_blank"></a>  This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
