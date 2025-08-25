@@ -24,7 +24,7 @@
     <!-- leaflet files -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-    <!--Leaflet Time-Slider module-->
+    <!--Leaflet Time-Slider module js-->
     <script src="js/SliderControl.js"></script>
   </head>
   <body id="page-top">
@@ -91,10 +91,9 @@
     </section>
 
     <!-- Map-->
-    <section class="map-section text-center" id="map">
+    <section class="map-section text-center">
       <div id="map" style="height:800px"></div>
 
-      <!-- Inline map logic -->
       <script>
         // 1) Initialize map on Europe
         var map = L.map('map', {
@@ -104,8 +103,7 @@
         }).setView([54, 10], 4);
 
         L.tileLayer(
-          'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-          {
+          'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
             attribution:
               '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, ' +
               '&copy; <a href="https://carto.com/">CARTO</a>'
@@ -121,18 +119,17 @@
         // 3) Popup content
         function onEachFeature(feature, layer) {
           var p = feature.properties;
-          var html =
-            '<div>' +
-            '<h5>' + p.city + ', ' + p.country + '</h5>' +
-            '<p>' +
-            '<strong>Use case:</strong> ' + p.use_case + '<br/>' +
-            '<strong>Mode:</strong> ' + p.mode + '<br/>' +
-            '<strong>Motivation:</strong> ' + (p.motivation || '—') + '<br/>' +
-            '<strong>Stakeholder:</strong> ' + (p.stakeholder || '—') + '<br/>' +
-            '<a href="' + p.link + '" target="_blank">Source</a>' +
-            '</p>' +
-            '</div>';
-          layer.bindPopup(html, { closeButton: true });
+          var html = '<div>' +
+                       '<h5>' + p.city + ', ' + p.country + '</h5>' +
+                       '<p>' +
+                         '<strong>Use case:</strong> ' + p.use_case + '<br/>' +
+                         '<strong>Mode:</strong> '     + p.mode     + '<br/>' +
+                         '<strong>Motivation:</strong> ' + (p.motivation || '—') + '<br/>' +
+                         '<strong>Stakeholder:</strong> ' + (p.stakeholder || '—') + '<br/>' +
+                         '<a href="' + p.link + '" target="_blank">Source</a>' +
+                       '</p>' +
+                     '</div>';
+          layer.bindPopup(html, {closeButton: true});
         }
 
         // 4) Load all JSON files listed in manifest.json
@@ -157,25 +154,25 @@
             byYear[y].push(f);
           });
 
-          // Build a continuous year range up to the current year <<<
+          // Build a continuous year range up to the current year
           var yearsPresent = Object.keys(byYear).map(Number);
           if (yearsPresent.length === 0) {
             console.error('No year values found in data.');
             return;
           }
           var minYear = Math.min.apply(null, yearsPresent);
-          var currentYear = new Date().getFullYear(); // ends at the actual current year
+          var currentYear = new Date().getFullYear();
 
           // 6) Build one L.geoJSON layer per year; include empty years too
           var layers = [];
           for (var y = minYear; y <= currentYear; y++) {
             var feats = byYear[y] || [];
             var layer = L.geoJSON(feats, {
-              pointToLayer: (feat, latlng) => L.marker(latlng, { icon: myicon }),
+              pointToLayer: (feat, latlng) => L.marker(latlng, {icon: myicon}),
               onEachFeature: onEachFeature
             });
-            // sliderControl reads layer.options.time as a Date
-            layer.options.time = new Date(y, 0, 1);
+            // IMPORTANT: store as UTC midnight to avoid timezone shifting the year
+            layer.options.time = new Date(Date.UTC(y, 0, 1));
             layers.push(layer);
           }
 
@@ -187,8 +184,7 @@
             layer: multi,
             alwaysShowDate: true,
             showPopups: false,
-            // Start at the current year (i.e., show all years up to now)
-            showAllOnStart: true
+            showAllOnStart: true // start at current year (show all years up to now)
           });
           map.addControl(slider);
           slider.startSlider();
@@ -205,9 +201,7 @@
           <div class="col-lg-10">
             <h2 class="text-white mb-4">Data</h2>
             <p class="text-white-80 mb-3">
-              You can download the data in JSON format
-              <a href="https://github.com/caimeng2/UrbMobAI/tree/master/assets/data" target="_blank">here</a>
-              and use it for your own project.
+              You can download the data in JSON format <a href="https://github.com/caimeng2/UrbMobAI/tree/master/assets/data" target="_blank">here</a> and use it for your own project.
             </p>
           </div>
         </div>
@@ -234,17 +228,8 @@
     <!-- Footer-->
     <footer class="footer bg-mine small text-center text-white-50">
       <div class="container px-4 px-lg-5">Copyright &copy; Meng Cai 2025</div>
-      <div class="container px-4 px-lg-5">
-        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-          <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" target="_blank">
-        </a>
-        This work is licensed under a
-        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
-          Creative Commons Attribution-ShareAlike 4.0 International License
-        </a>.
-      </div>
+      <div class="container px-4 px-lg-5"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" target="_blank"></a>  This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</div>
     </footer>
-
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->

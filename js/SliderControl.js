@@ -1,6 +1,6 @@
 /* SliderControl.js — Leaflet + jQuery UI time slider control
  * Shows time-series layers on a Leaflet map.
- * Modified so the timestamp pill displays ONLY the 4-digit year.
+ * Modified so the timestamp pill displays only the 4-digit year.
  */
 L.Control.SliderControl = L.Control.extend({
   options: {
@@ -54,17 +54,6 @@ L.Control.SliderControl = L.Control.extend({
 
     var options = this.options;
     options.markers = [];
-
-    function getTimeValueFromLayer(layer, options) {
-      var raw = getRawTime(layer, options);
-      if (raw == null) return null;
-      if (raw instanceof Date) return raw.getTime();
-      if (typeof raw === 'number') {
-        return raw < 1e12 ? raw * 1000 : raw;
-      }
-      var t = Date.parse(raw);
-      return isNaN(t) ? null : t;
-    }
 
     function compare(a, b) {
       var valA = getTimeValueFromLayer(a, options);
@@ -270,7 +259,7 @@ function normalizeEpoch(n) {
   return new Date(n);
 }
 
-// force timestamp pill to show year only
+// Show only the year
 function formatTimestamp(time, options) {
   let d;
   if (time instanceof Date) {
@@ -283,7 +272,7 @@ function formatTimestamp(time, options) {
     d = new Date(time);
   }
   if (!d || isNaN(d.getTime())) return '';
-  return String(d.getUTCFullYear());
+  return String(d.getFullYear()); 
 }
 
 L.control.sliderControl = function (options) {
