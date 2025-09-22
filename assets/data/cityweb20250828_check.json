@@ -1,0 +1,23 @@
+[
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        13.5856048,
+        49.8348737
+      ]
+    },
+    "properties": {
+      "id": "cityweb000849",
+      "city": "Plzeň [Pilsen]",
+      "country": "Czech",
+      "use_case": "smart trams that communicate with the transport infrastructure and navigate in space",
+      "mode": "road",
+      "motivation": "testAI methods in safety-critical applications",
+      "stakeholder": "Škoda Digital and Škoda Transportation, the DIDYMOS research project",
+      "link": "https://plzeninovativni.k8s-dev.plzen.eu/projekty/zdokonalovani-chytre-tramvaje-v-plzni-pokracuje/"
+    },
+    "year": 2024
+  }
+]
