@@ -1,0 +1,44 @@
+[
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        24.7453688,
+        59.4372155
+      ]
+    },
+    "properties": {
+      "id": "cityweb001304",
+      "city": "Tallinn",
+      "country": "Estonia",
+      "use_case": "autonomous and remote-controlled electric port truck",
+      "mode": "road",
+      "motivation": " greater efficiency and better traffic safety",
+      "stakeholder": "HHLA TK Estonia, Fernride, the Muuga container terminal",
+      "link": "https://www.tallinn.ee/et/tallinnovatsioon/uudis/hhla-tk-estonia-terminalis-testitakse-maailmas-ainulaadset-autonoomset-sadamaveokit"
+    },
+    "year": 2023
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        24.7453688,
+        59.4372155
+      ]
+    },
+    "properties": {
+      "id": "cityweb001311",
+      "city": "Tallinn",
+      "country": "Estonia",
+      "use_case": "AI-powered cameras on buses to detect parking violations in bus lanes and stops",
+      "mode": "road",
+      "motivation": "improving the overall quality and sustainability of the services offered by the city",
+      "stakeholder": "Hayden AI, City of Tallinn",
+      "link": "https://www.tallinn.ee/et/ettevotjale/uudis/tallinn-katsetab-tehisintellekti-liiklusohutuse-ja-tohususe-suurendamiseks"
+    },
+    "year": 2024
+  }
+]
