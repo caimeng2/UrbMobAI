@@ -1,0 +1,863 @@
+[
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        9.9753758,
+        53.5909051
+      ]
+    },
+    "properties": {
+      "id": "cityweb002774",
+      "city": "Hamburg",
+      "country": "Germany",
+      "use_case": "testing automated and connected driving",
+      "mode": "road",
+      "motivation": "to make driving even safer and more convenient in the future",
+      "stakeholder": "Volkswagen, the State Office for Roads, Bridges and Waterways, Hamburg Verkehrsanlagen GmbH",
+      "link": "https://www.hamburg.de/politik-und-verwaltung/behoerden/bvm/die-themen-der-behoerde/intelligente-verkehrssysteme/news-its-1-192496"
+    },
+    "year": 2019
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        9.9753758,
+        53.5909051
+      ]
+    },
+    "properties": {
+      "id": "cityweb002775",
+      "city": "Hamburg",
+      "country": "Germany",
+      "use_case": "AI detection in tunnels",
+      "mode": "road",
+      "motivation": null,
+      "stakeholder": "Hamburg Traffic Control Center",
+      "link": "https://www.hamburg.de/verkehr/auto-strasse/verkehrsleitzentrale-hamburg-997980"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        6.7763137,
+        51.2254018
+      ]
+    },
+    "properties": {
+      "id": "cityweb002909",
+      "city": "Düsseldorf",
+      "country": "Germany",
+      "use_case": "recording road conditions",
+      "mode": "road",
+      "motivation": null,
+      "stakeholder": "Department of Mobility and Environment",
+      "link": "https://www.duesseldorf.de/aktuelles/news/detailansicht/newsdetail/hightech-fahrzeuge-erfassen-ab-heute-den-strassenzustand-in-duesseldorf-1"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        6.759562,
+        51.434999
+      ]
+    },
+    "properties": {
+      "id": "cityweb003286",
+      "city": "Duisburg",
+      "country": "Germany",
+      "use_case": "detecting and reporting damaged traffic signs",
+      "mode": "road",
+      "motivation": "make the cityscape cleaner , the streets safer , and service more efficient",
+      "stakeholder": "Kreislaufwirtschaft Duisburg GmbH, ",
+      "link": "https://www.duisburg.de/microsites/smartcityduisburg/digitales_angebot/https-www.wbd-innovativ.de.php"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        7.6251879,
+        51.9625101
+      ]
+    },
+    "properties": {
+      "id": "cityweb003420",
+      "city": "Münster",
+      "country": "Germany",
+      "use_case": "AI-powered camera to accelerate bus traffic",
+      "mode": "road",
+      "motivation": "reduce the need for buses to stop as frequently in the immediate vicinity of traffic lights and minimizes the impact on other traffic",
+      "stakeholder": " RWTH Aachen University, City of Münster ",
+      "link": "https://www.stadt-muenster.de/aktuelles/pm-details?1165260"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        6.083862,
+        50.776351
+      ]
+    },
+    "properties": {
+      "id": "cityweb003674",
+      "city": "Aachen",
+      "country": "Germany",
+      "use_case": "deriving traffic signs, road damage, markings, and real areas from a digital twin",
+      "mode": "road",
+      "motivation": null,
+      "stakeholder": "the city, Ministry of Transport of North Rhine-Westphalia",
+      "link": "https://www.aachen.de/in-aachen-leben/mobilitaet-verkehr/mobilitaetskonzepte/digitalisierung-in-der-mobilitaet/"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        11.0287364,
+        50.9777974
+      ]
+    },
+    "properties": {
+      "id": "cityweb003825",
+      "city": "Erfurt",
+      "country": "Germany",
+      "use_case": "traffic-signal time prediction",
+      "mode": "road",
+      "motivation": "efficient and environmentally friendly traffic management ",
+      "stakeholder": "Messe Erfurt GmbH, the city",
+      "link": "https://www.erfurt.de/ef/de/service/aktuelles/pm/2021/138236.html"
+    },
+    "year": 2021
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        7.219985,
+        51.5380394
+      ]
+    },
+    "properties": {
+      "id": "cityweb004082",
+      "city": "Herne",
+      "country": "Germany",
+      "use_case": "AI-powered continuous road condition monitoring system using Herne Waste Management vehicles",
+      "mode": "road",
+      "motivation": null,
+      "stakeholder": "City of Herne, EDGITAL GmbH (a subsidiary of HOCHTIEF PPP Solutions GmbH), Entsorgung Herne",
+      "link": "https://www.herne.de/Wirtschaft-und-Infrastruktur/Verkehr/Strassenzustandserfassung-mit-Entsorgungsfahrzeugen-im-Testbetrieb/"
+    },
+    "year": 2023
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        11.4250395,
+        48.7630165
+      ]
+    },
+    "properties": {
+      "id": "cityweb004136",
+      "city": "Ingolstadt",
+      "country": "Germany",
+      "use_case": "multimodal data (cars, ÖPNV, bikes, pedestrians) feed AI-driven signal control for near-real-time green-time adaptation",
+      "mode": "road",
+      "motivation": "optimize traffic flow and increase the efficiency of infrastructure, as well as to improve road safety for all road users",
+      "stakeholder": "City of Ingolstadt, IFG Ingolstadt AöR, the Federal Ministry for Digital and Transport",
+      "link": "https://www.ingolstadt.de/output/download.php?fid=3052.4918.1.PDF"
+    },
+    "year": 2023
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        9.218655,
+        49.142291
+      ]
+    },
+    "properties": {
+      "id": "cityweb004237",
+      "city": "Heilbronn",
+      "country": "Germany",
+      "use_case": "prediction of on-street parking availability in public road space using a AI model",
+      "mode": "road",
+      "motivation": "cut parking search traffic, save costs on sensors, enable smarter planning (e.g. micromobility, EV charging), and open data for innovation",
+      "stakeholder": "City of Heilbronn, Fraunhofer IAO",
+      "link": "https://www.heilbronn.de/umwelt-mobilitaet/mobilitaet/damast-datenbasiertes-management-im-strassenraum.html"
+    },
+    "year": 2022
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        6.6441878,
+        49.7596208
+      ]
+    },
+    "properties": {
+      "id": "cityweb004409",
+      "city": "Trier",
+      "country": "Germany",
+      "use_case": "AI-driven intelligent charging management to match renewable electricity (solar, wind) production with bus charging schedules",
+      "mode": "road",
+      "motivation": "optimal use of renewable energy, reduce CO₂ emissions",
+      "stakeholder": "Stadtwerke Trier (SWT), Federal Ministry for Digital and Transport (BMDV)",
+      "link": "https://www.trier.de/File/51-kw-raz-2024.pdf"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        9.1750718,
+        47.659216
+      ]
+    },
+    "properties": {
+      "id": "cityweb004596",
+      "city": "Konstanz",
+      "country": "Germany",
+      "use_case": "analyze street surfaces (via images) to detect and classify road defects and assign condition ratings to road segments",
+      "mode": "road",
+      "motivation": "efficiency in road condition assessment and resource planning",
+      "stakeholder": "Stadt Konstanz, Tiefbauamt, company vialytics",
+      "link": "https://www.konstanz.de/538656"
+    },
+    "year": 2023
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        9.1750718,
+        47.659216
+      ]
+    },
+    "properties": {
+      "id": "cityweb004605",
+      "city": "Konstanz",
+      "country": "Germany",
+      "use_case": "prediction-based traffic light (pedestrian signal) control using LiDAR + AI to dynamically adapt signal timing",
+      "mode": "road",
+      "motivation": "to reduce waiting times and optimize traffic flow",
+      "stakeholder": "Stadt Konstanz, Hochschule Technik, Wirtschaft und Gestaltung (HTWG)",
+      "link": "https://www.konstanz.de/service/presse/pressemitteilungen/smart+green+city+ki-ampelschaltung"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        6.6148669,
+        51.8382715
+      ]
+    },
+    "properties": {
+      "id": "cityweb004755",
+      "city": "Bocholt",
+      "country": "Germany",
+      "use_case": "traffic lights equipped with AI that detect cyclists and pedestrians approaching and adjust or extend green phases accordingly",
+      "mode": "road",
+      "motivation": "reduce waiting times and increase safety",
+      "stakeholder": "Stadt Bocholt, Yunex Traffic",
+      "link": "https://www.bocholt.de/neuigkeiten/planen-und-bauen/bocholt-setzt-auf-ki-gestuetzte-ampelsteuerung"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        9.7977584,
+        48.7999036
+      ]
+    },
+    "properties": {
+      "id": "cityweb004832",
+      "city": "Schwäbisch Gmünd",
+      "country": "Germany",
+      "use_case": "AI-based automated damage detection and condition assessment of roads and bicycle paths",
+      "mode": "road",
+      "motivation": "reduce manual effort in condition surveys",
+      "stakeholder": "City of Schwäbisch Gmünd, Baubetriebsamt, vialytics",
+      "link": "https://www.schwaebisch-gmuend.de/pressedetails/kuenstliche-intelligenz-fuer-sichere-strassen.html"
+    },
+    "year": 2022
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        7.7953822,
+        51.43779
+      ]
+    },
+    "properties": {
+      "id": "cityweb005014",
+      "city": "Menden (Sauerland)",
+      "country": "Germany",
+      "use_case": "equipping garbage trucks with smartphones to capture street images and road surface unevenness during regular routes, to assess road condition",
+      "mode": "road",
+      "motivation": "enable data-based planning, more efficient maintenance and less on-site inspections",
+      "stakeholder": "City of Menden, mendigital GmbH, municipal waste collection service, Vialytics",
+      "link": "https://www.menden.de/aktuelles/detailseite/smarte-daten-fuer-bessere-strassen"
+    },
+    "year": 2023
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        22.7153745,
+        37.6381818
+      ]
+    },
+    "properties": {
+      "id": "cityweb005154",
+      "city": "Larissa",
+      "country": "Greece",
+      "use_case": "AI-based support for smart parking management",
+      "mode": "road",
+      "motivation": "optimize parking conditions, reduce traffic and emissions",
+      "stakeholder": "Municipality of Larissa, Flowbird",
+      "link": "https://www.larissa.gov.gr/el/ses-genika"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -8.5511399,
+        52.6759305
+      ]
+    },
+    "properties": {
+      "id": "cityweb005279",
+      "city": "Limerick (Luimneach)",
+      "country": "Ireland",
+      "use_case": "Prototype SUV used AI neural nets on-street during the St. Patrick’s Day parade to map the route and classify vehicles, pedestrians, and safe driving paths",
+      "mode": "road",
+      "motivation": "map and understand the parade route",
+      "stakeholder": "Provizio, prototype Jaguar Land Rover Defender, Seán O’Sullivan, Coláiste Chiaráin",
+      "link": "https://www.limerick.ie/council/newsroom/news/electrifying-parade-brings-a-different-kind-of-energy-to-limerick-city"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        12.4956329,
+        41.9158197
+      ]
+    },
+    "properties": {
+      "id": "cityweb005343",
+      "city": "Roma [Rome]",
+      "country": "Italy",
+      "use_case": "AI-powered mobile app (“SmooveAppIA”) detects and maps potholes and bumps in real time using smartphone sensors during car trips",
+      "mode": "road",
+      "motivation": "timely and precise road maintenance",
+      "stakeholder": "Municipio IX of Roma Capitale, Mediavoice Srl",
+      "link": "https://www.comune.roma.it/web-resources/cms/documents/app_smove_comunicazione.pdf"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        11.4063543,
+        45.6348591
+      ]
+    },
+    "properties": {
+      "id": "cityweb005994",
+      "city": "Vicenza",
+      "country": "Italy",
+      "use_case": "AI-enabled cameras monitor a multi-level parking structure to detect security issues and anomalies in the parking facility",
+      "mode": "road",
+      "motivation": "increase user safety and proactively monitor facility integrity",
+      "stakeholder": "AGSM AIM Smart Solutions, Comune di Vicenza",
+      "link": "https://www.comune.vicenza.it/Novita/Comunicati/Conclusi-i-lavori-di-ammodernamento-dei-sistemi-di-sicurezza-del-Park-Verdi-di-Vicenza"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        18.2260628,
+        40.1522173
+      ]
+    },
+    "properties": {
+      "id": "cityweb006106",
+      "city": "Lecce",
+      "country": "Italy",
+      "use_case": "virtual assistant in the app guides users through public transit choice, parking, and route planning",
+      "mode": "road",
+      "motivation": "personalize navigation and simplify mobility experience",
+      "stakeholder": "Comune di Lecce, SGM",
+      "link": "https://www.comune.lecce.it/news/dettaglio/2025/06/09/disponibile-su-android-e-ios-la-nuova-app-ufficiale-di-sgm-per-cittadini-pendolari-e-turisti-un-esperienza-di-mobilit%C3%A0-urbana-pi%C3%B9-semplice-e-completamente-digitale"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.063284,
+        37.4902628
+      ]
+    },
+    "properties": {
+      "id": "cityweb006304",
+      "city": "Caltanissetta",
+      "country": "Italy",
+      "use_case": "optimize bus routes and vehicle management, and analyze vehicular flows, parking states, and environment",
+      "mode": "road",
+      "motivation": "optimize routes and resource use",
+      "stakeholder": "Comune di Caltanissetta, assessore Ivan Rando",
+      "link": "https://www.comune.caltanissetta.it/it/news/100664/lunedi-29-gennaio-chiude-al-transito-veicolare-via-berengario-gaetani-e-contestualmente-viene-sospesa-lisola-pedonale-di-corso-umberto-i"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        19.7136301,
+        52.5353471
+      ]
+    },
+    "properties": {
+      "id": "cityweb007449",
+      "city": "Plock",
+      "country": "Poland",
+      "use_case": "pilot AI camera counts cyclists at a intersection to generate precise traffic data",
+      "mode": "road",
+      "motivation": "gather reliable, precise information for mobility monitoring",
+      "stakeholder": "Urząd Miasta Płocka, Yunex",
+      "link": "https://nowy.plock.eu/core/uploads/page/mz08-2024-1.pdf"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -3.6899043,
+        40.4237276
+      ]
+    },
+    "properties": {
+      "id": "cityweb008831",
+      "city": "Madrid",
+      "country": "Spain",
+      "use_case": "AI‐enabled camera systems to dynamically regulate traffic lights",
+      "mode": "road",
+      "motivation": "integrate all types of road users dynamically and balance traffic regulation more realistically",
+      "stakeholder": "Área de Urbanismo, Medio Ambiente y Movilidad, Dirección General de Gestión y Vigilancia de la Circulación",
+      "link": "https://www.madrid.es/portales/munimadrid/es/Inicio/Actualidad/Noticias/Madrid-desarrolla-con-exito-proyectos-de-aplicacion-de-Inteligencia-Artificial-en-la-regulacion-de-los-semaforos/?vgnextfmt=default&vgnextoid=a8a7a6f3d6e09910VgnVCM200000f921e388RCRD&vgnextchannel=a12149fa40ec9410VgnVCM100000171f5a0aRCRD"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -0.6986322,
+        42.8033024
+      ]
+    },
+    "properties": {
+      "id": "cityweb008883",
+      "city": "València",
+      "country": "Spain",
+      "use_case": "monitor pedestrian crossings and road markings via AI to detect deterioration of paint markings",
+      "mode": "road",
+      "motivation": "detect deterioration of road markings more effectively and ensure safety of people and vehicles",
+      "stakeholder": "Ayuntamiento de Valencia",
+      "link": "https://www.valencia.es/cas/actualidad/-/content/monitorizaci%C3%B3n-de-pasos-de-peatones-mediante-inteligencia-artificial-en-val%C3%A8ncia"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -3.6433057,
+        41.753553
+      ]
+    },
+    "properties": {
+      "id": "cityweb008953",
+      "city": "Sevilla",
+      "country": "Spain",
+      "use_case": "using AI-equipped cameras to perform traffic counts, discriminate vehicle trajectories, types of vehicles, and number of pedestrians at crossings",
+      "mode": "road",
+      "motivation": "improve coordination of main urban routes",
+      "stakeholder": "City of Sevilla",
+      "link": "https://www.sevilla.org/actualidad/noticias/2024/el-alcalde-inaugura-el-nuevo-centro-de-gestion-de-la-movilidad-en-el-edificio-de-ranilla"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -3.6433057,
+        41.753553
+      ]
+    },
+    "properties": {
+      "id": "cityweb008954",
+      "city": "Sevilla",
+      "country": "Spain",
+      "use_case": "a virtual security guard to prevent fraud, non-payments, or theft in a ebike and scooter parking hub",
+      "mode": "road",
+      "motivation": "provide safe space for private personal mobility vehicles",
+      "stakeholder": "Ayuntamiento de Sevilla, Junta de Andalucía, PCT Cartuja, Endesa, Mimoto Parking, Wise Build",
+      "link": "https://www.sevilla.org/actualidad/noticias/2022/ecitysevilla-inaugura-un-hub-multiservicio-para-bicis-y-patinetes-electricos-en-el-pct-cartuja"
+    },
+    "year": 2022
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -0.9284056,
+        41.6092099
+      ]
+    },
+    "properties": {
+      "id": "cityweb009192",
+      "city": "Alicante",
+      "country": "Spain",
+      "use_case": "intelligent cameras for license-plate recognition and traffic regulation using computer vision",
+      "mode": "road",
+      "motivation": "optimize and improve mobility in the city",
+      "stakeholder": "Ayuntamiento de Alicante, concejales de Movilidad y de Modernización y Nuevas Tecnologías",
+      "link": "https://www.alicante.es/es/noticias/ayuntamiento-crea-sistema-pionero-nivel-europeo-gestion-movilidad"
+    },
+    "year": 2021
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -1.3077624,
+        38.1140804
+      ]
+    },
+    "properties": {
+      "id": "cityweb009628",
+      "city": "Elche",
+      "country": "Spain",
+      "use_case": "pilot system to control access by automatically reading license plates, vehicle model, color and size to detect unauthorized vehicles",
+      "mode": "road",
+      "motivation": "restrict unauthorized traffic and reinforce road safety in a pedestrian zone",
+      "stakeholder": "Ayuntamiento de Elche, concejalía de Servicios Públicos, technical telecommunications section",
+      "link": "https://www.elche.es/2025/05/una-camara-regulara-el-control-de-acceso-de-vehiculos-en-la-calle-fira/"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -4.715718,
+        41.6424415
+      ]
+    },
+    "properties": {
+      "id": "cityweb009930",
+      "city": "Almería",
+      "country": "Spain",
+      "use_case": "monitor traffic, parking availability, air quality, and coordinate responses (e.g. accidents, congestion) via AI and big data",
+      "mode": "road",
+      "motivation": "improve efficiency of traffic management and promote sustainability in mobility",
+      "stakeholder": "Ayuntamiento de Almería, Aluvisa",
+      "link": "https://almeriaciudad.es/actualidad/el-ayuntamiento-pone-en-marcha-almeria-smart-mobility-la-app-de-movilidad-inteligente-y"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -5.302705,
+        42.6932082
+      ]
+    },
+    "properties": {
+      "id": "cityweb010373",
+      "city": "Dos Hermanas",
+      "country": "Spain",
+      "use_case": "smart cameras with AI analytics for traffic monitoring (license-plate reading, vehicle classification, color detection) and incident/event detection via a control platform",
+      "mode": "road",
+      "motivation": "increase public safety and optimize response, and better manage traffic resources",
+      "stakeholder": "Ayuntamiento de Dos Hermanas, Innovasur, Policía Local",
+      "link": "https://www.doshermanas.es/noticias/notas-de-prensa/EL-AYUNTAMIENTO-PONE-EN-MARCHA-UN-SISTEMA-INTELIGENTE-DE-GESTION-DEL-TRAFICO-Y-LA-MOVILIDAD-EN-DOS-HERMANAS/"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -5.6496223,
+        40.9668063
+      ]
+    },
+    "properties": {
+      "id": "cityweb010865",
+      "city": "Fuengirola",
+      "country": "Spain",
+      "use_case": "combining traffic signal control with AI-enabled sensors to monitor vehicle flow, categorize vehicle types, and manage circulation in real time",
+      "mode": "road",
+      "motivation": "regulate mobility more safely and efficiently",
+      "stakeholder": "Ayuntamiento de Fuengirola, Vodafone",
+      "link": "https://www.fuengirola.es/fuengirola-se-situa-en-la-vanguardia-mundial-de-la-gestion-del-trafico-con-la-incorporacion-de-la-inteligencia-artificial-para-regular-la-movilidad/"
+    },
+    "year": 2023
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -5.8769608,
+        40.7779619
+      ]
+    },
+    "properties": {
+      "id": "cityweb011000",
+      "city": "Estepona",
+      "country": "Spain",
+      "use_case": "using intelligent cameras and AI sensors to monitor traffic, detect zones of high vehicle density, and control traffic in real time",
+      "mode": "road",
+      "motivation": "enable faster municipal action and better responses in traffic control",
+      "stakeholder": "Ayuntamiento de Estepona, Aplicaciones Tecnológicas Juma S.L",
+      "link": "https://ayuntamiento.estepona.es/noticia/17212-el-ayuntamiento-implanta-un-sistema-de-camaras-inteligentes-pionero-en-la-provincia-para-controlar-del-trafico.html"
+    },
+    "year": 2023
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        8.7291498,
+        47.4991723
+      ]
+    },
+    "properties": {
+      "id": "cityweb012584",
+      "city": "Winterthur",
+      "country": "Switzerland",
+      "use_case": "AI processes live video to classify and count different types of vehicles",
+      "mode": "road",
+      "motivation": "enable efficient, resource-saving traffic data collection with less equipment and personnel",
+      "stakeholder": "Stadt Winterthur",
+      "link": "https://stadt.winterthur.ch/themen/die-stadt/smart-city-winterthur/projekte/ftw-simplelayout-filelistingblock-14/factsheet-ki-verkehrsdaten.pdf/download"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -0.1277653,
+        51.5074456
+      ]
+    },
+    "properties": {
+      "id": "cityweb012794",
+      "city": "London",
+      "country": "United Kingdom",
+      "use_case": "AI and digital imaging trial to identify near-miss incidents at a pedestrian crossing in Lambeth",
+      "mode": "road",
+      "motivation": "improve road safety",
+      "stakeholder": "Transport for London (TfL), Bosch, Daimler, Ford",
+      "link": "https://www.london.gov.uk/who-we-are/what-london-assembly-does/questions-mayor/find-an-answer/near-misses"
+    },
+    "year": 2021
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -1.510477,
+        52.4081812
+      ]
+    },
+    "properties": {
+      "id": "cityweb012934",
+      "city": "Coventry",
+      "country": "United Kingdom",
+      "use_case": "AI vision sensors detect near misses to identify collision risk hotspots before accidents occur",
+      "mode": "road",
+      "motivation": "proactively reveal road safety risks before collisions occur",
+      "stakeholder": "Coventry City Council, West Midlands Combined Authority, Transport for West Midlands (TfWM), VivaCity",
+      "link": "https://www.coventry.gov.uk/news/article/5170/new-ai-technology-reveals-road-safety-risks-across-the-west-midlands"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -0.7594092,
+        52.0406502
+      ]
+    },
+    "properties": {
+      "id": "cityweb012995",
+      "city": "Milton Keynes",
+      "country": "United Kingdom",
+      "use_case": "map the road environment and automatically detect defects to support maintenance planning",
+      "mode": "road",
+      "motivation": "identify deteriorating road conditions and optimise surface treatments and maintenance programmes",
+      "stakeholder": "Milton Keynes City Council",
+      "link": "https://www.milton-keynes.gov.uk/sites/default/files/2024-01/Mini%20Guide%20Highways%20Inspections%20%283%29%20%281%29.pdf"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -2.127567,
+        52.5847651
+      ]
+    },
+    "properties": {
+      "id": "cityweb013025",
+      "city": "Wolverhampton",
+      "country": "United Kingdom",
+      "use_case": "AI condition surveys to map road surfaces, detect defects, forecast deterioration, and guide maintenance planning",
+      "mode": "road",
+      "motivation": "provide consistent, objective condition data and recommend timely interventions",
+      "stakeholder": "City of Wolverhampton Council, Department for Transport (DfT), PTS, Vaisala",
+      "link": "https://www.wolverhampton.gov.uk/sites/default/files/2025-06/Local%20highway%20maintenance%20transparency%20report%20-%20Final.pdf"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -4.1424451,
+        50.3714122
+      ]
+    },
+    "properties": {
+      "id": "cityweb013033",
+      "city": "Plymouth",
+      "country": "United Kingdom",
+      "use_case": "AI cameras capture images of passing vehicles to detect seatbelt and mobile phone offences",
+      "mode": "road",
+      "motivation": "help protect road users by identifying dangerous driving behaviours",
+      "stakeholder": "Plymouth City Council, Devon & Cornwall Police, Acusensus",
+      "link": "https://www.plymouth.gov.uk/news/ai-cameras-monitor-tavistock-road-seatbelt-and-mobile-phone-offences"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -2.1812607,
+        53.0162014
+      ]
+    },
+    "properties": {
+      "id": "cityweb013054",
+      "city": "Stoke on Trent",
+      "country": "United Kingdom",
+      "use_case": "AI analyses high-resolution camera imagery to detect and classify road defects",
+      "mode": "road",
+      "motivation": "make defect identification more efficient and enable better planning and value for money",
+      "stakeholder": "Stoke-on-Trent City Council",
+      "link": "https://www.stoke.gov.uk/news/article/1902/cutting_edge_ai_technology_driving_improvements_on_stoke-on-trents_roads"
+    },
+    "year": 2024
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        -1.0743052,
+        53.9656579
+      ]
+    },
+    "properties": {
+      "id": "cityweb013102",
+      "city": "York",
+      "country": "United Kingdom",
+      "use_case": "AI-powered road condition survey",
+      "mode": "road",
+      "motivation": null,
+      "stakeholder": "City of York Council",
+      "link": "https://www.york.gov.uk/streets-roads-pavements/highway-condition-report-2025"
+    },
+    "year": 2024
+  }
+]
