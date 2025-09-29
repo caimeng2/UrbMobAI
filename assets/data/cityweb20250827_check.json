@@ -34,7 +34,7 @@
       "city": "Linz",
       "country": "Austria",
       "use_case": "Transport solution for large events",
-      "mode": "cross_modal",
+      "mode": "road",
       "motivation": "AI pilot project that redirects visitors to 17 parking garages and encourages public transport usage.",
       "stakeholder": "City of Linz",
       "link": "https://www.linz.at/digitaleslinz/126788.php"
@@ -124,27 +124,6 @@
       "link": "https://www.linz.at/medienservice/2024/202409_127667.php"
     },
     "year": 2025
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [
-        14.3075976,
-        46.623943
-      ]
-    },
-    "properties": {
-      "id": "cityweb000237",
-      "city": "Klagenfurt am Wörthersee",
-      "country": "Austria",
-      "use_case": "Digital twin of Klagenfurt created with AI",
-      "mode": "cross_modal",
-      "motivation": "basis for clarifying important questions in the field of transportation",
-      "stakeholder": "City of Klagenfurt",
-      "link": "https://www.klagenfurt.at/fileadmin/user_upload/Stadt_Klagenfurt/02-StadtVERWALTUNG/Presse_und_Newsroom/Stadtmedien/StadtZeitung/2023/230419_4.pdf"
-    },
-    "year": 2023
   },
   {
     "type": "Feature",
