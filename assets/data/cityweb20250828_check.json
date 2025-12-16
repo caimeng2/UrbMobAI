@@ -4,6 +4,69 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
+        23.3217359,
+        42.6977028
+      ]
+    },
+    "properties": {
+      "id": "cityweb000553",
+      "city": "Sofia",
+      "country": "Bulgaria",
+      "use_case": "Electric Urban Transport on Demand",
+      "mode": "road",
+      "motivation": "Increase efficiency through flexible routing and scheduling. Also better reach of the periphery.",
+      "stakeholder": "City of Sofia",
+      "link": "https://www.sofia.bg/news/-/asset_publisher/1ZlMReQfODHE/content/id/1105559/pop_up"
+    },
+    "year": 2021
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        23.3217359,
+        42.6977028
+      ]
+    },
+    "properties": {
+      "id": "cityweb000557",
+      "city": "Sofia",
+      "country": "Bulgaria",
+      "use_case": "Collection and Analysis of Transport Data",
+      "mode": "cross_modal",
+      "motivation": " Providing an opportunity to monitor key urban processes, detect problems and assess the effect of measures taken in real time.",
+      "stakeholder": "GATE Institute",
+      "link": "https://www.sofia.bg/city-living-lab"
+    },
+    "year": 2022
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        23.3217359,
+        42.6977028
+      ]
+    },
+    "properties": {
+      "id": "cityweb000576",
+      "city": "Sofia",
+      "country": "Bulgaria",
+      "use_case": "Monitoring busy intersections using LiDAR",
+      "mode": "road",
+      "motivation": "traffic monitoring and micro-simulation to support informed decision-making",
+      "stakeholder": "GATE Institute",
+      "link": "https://www.sofia.bg/lidar-data"
+    },
+    "year": 2025
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
         15.9622315,
         45.8426414
       ]
@@ -19,6 +82,27 @@
       "link": "https://zagreb.hr/en/humanoidni-robot-viktorija-novi-je-promotor-turist/152031"
     },
     "year": 2019
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.9622315,
+        45.8426414
+      ]
+    },
+    "properties": {
+      "id": "cityweb000666",
+      "city": "Zagreb",
+      "country": "Croatia",
+      "use_case": "Automated Traffic Lights",
+      "mode": "road",
+      "motivation": "more efficient traffic management system ",
+      "stakeholder": "City of Zagreb",
+      "link": "https://www.zagreb.hr/zapocela-druga-faza-ugradnje-pametnih-semafora-u-z/200044"
+    },
+    "year": 2024
   },
   {
     "type": "Feature",
