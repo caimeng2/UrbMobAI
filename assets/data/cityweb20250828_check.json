@@ -4,6 +4,48 @@
     "geometry": {
       "type": "Point",
       "coordinates": [
+        15.9622315,
+        45.8426414
+      ]
+    },
+    "properties": {
+      "id": "cityweb000657",
+      "city": "Zagreb",
+      "country": "Croatia",
+      "use_case": "Humanoid robot to provide insights into tourist destinations",
+      "mode": "air",
+      "motivation": "Inform tourist through automated services",
+      "stakeholder": "City of Zagreb",
+      "link": "https://zagreb.hr/en/humanoidni-robot-viktorija-novi-je-promotor-turist/152031"
+    },
+    "year": 2019
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.442208,
+        45.3267976
+      ]
+    },
+    "properties": {
+      "id": "cityweb000764",
+      "city": "Rijeka",
+      "country": "Croatia",
+      "use_case": "smart traffic lights",
+      "mode": "road",
+      "motivation": "Strengthening Public Transport",
+      "stakeholder": "Rijeka Transport, City of Rijeka",
+      "link": "https://www.rijeka.hr/wp-content/uploads/2021/05/Grad-Rijeka-Mandatno-izvje%C5%A1%C4%87e-2017.-2021..pdf"
+    },
+    "year": 2017
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
         13.5856048,
         49.8348737
       ]
