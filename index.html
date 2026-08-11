@@ -1,246 +1,768 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>AI in Urban Mobility</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
-    <!--jquery js-->
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <!--jQuery UI files-->
-    <link rel="stylesheet" href="./css/jquery-ui.css" />
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-    <!--jQuery UI Touch js, required for touchscreen use-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-    <!-- leaflet files -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-    <!--Leaflet Time-Slider module js-->
-    <script src="js/SliderControl.js"></script>
-  </head>
-  <body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#page-top">AI in Urban Mobility</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#about"><b>About</b></a></li>
-            <li class="nav-item"><a class="nav-link" href="#map"><b>Map</b></a></li>
-            <li class="nav-item"><a class="nav-link" href="#data"><b>Data</b></a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact"><b>Contact</b></a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI in Urban Mobility</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --surface:#fafaf9; --surface-2:#f4f4f2;
+    --ink:#18181b; --ink-2:#52525b; --ink-3:#8b8b93;
+    --line:#e5e5e2; --line-2:#d3d3ce;
+    --rail:300px; --head:60px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--ink); background:var(--bg); font-size:14px; line-height:1.5;
+    -webkit-font-smoothing:antialiased; overflow:hidden;
+  }
+  button{font:inherit;color:inherit}
 
-    <!-- Masthead-->
-    <header class="masthead">
-      <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-        <div class="d-flex justify-content-center">
-          <div class="text-center">
-            <h1 class="mx-auto my-0"><b>AI in Urban Mobility</b></h1>
-            <!--
-            <h2 class="text-white-58 mx-auto mt-2 mb-5">A living archive</h2>
-            -->
-            <a class="btn btn-primary" href="#about">More</a>
-          </div>
-        </div>
-      </div>
-    </header>
+  header{
+    height:var(--head); border-bottom:1px solid var(--line);
+    display:flex; align-items:center; gap:20px; padding:0 20px; background:var(--bg);
+  }
+  .brand{border:0; background:none; padding:0; cursor:pointer; min-width:0; flex:none}
+  .brand h1{font-size:15px; font-weight:600; margin:0; letter-spacing:-.012em; white-space:nowrap; color:var(--ink)}
 
-    <!-- About-->
-    <section class="about-section text-center" id="about">
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-lg-10">
-            <h2 class="text-white mb-5">About this work</h2>
-            <p class="text-white-80 mb-3" align="left">
-              Artificial intelligence (AI) is reshaping how cities move.
-              While there has been plenty of discussion about AI technologies and their applications, it has been harder to see the bigger picture: where, when, how, why, and by whom AI is being adopted in urban transportation systems.
-            </p>
-            <p class="text-white-80 mb-3" align="left">
-              This project brings that picture into focus. It maps out:
-            </p>
-            <ul class="text-white-80 mb-3" align="left">
-              <li>Where AI is being implemented geographically</li>
-              <li>When adoption is taking place</li>
-              <li>How AI is integrated (i.e., use cases)</li>
-              <li>Which transportation modes are involved</li>
-              <li>Why AI is deployed</li>
-              <li>Who the key stakeholders are driving change</li>
-            </ul>
-            <p class="text-white-80 mb-3" align="left">
-              The map and dataset you see here are up to date as of September 2025.
-              The goal is to update them regularly as time and capacity allow.
-              Ultimately, I envision this project as a living archive of AI adoption in urban mobility, a resource that can grow over time to track new deployments, shifting use cases, and broader trends.
-            </p>
-            <p class="text-white-80 mb-3" align="left">
-              Read the publication <a href="https://open-research-europe.ec.europa.eu/articles/6-70/v1" target="_blank">here</a>: https://doi.org/10.12688/openreseurope.23222.1
-            </p>
-            <br><br>
-          </div>
-        </div>
-      </div>
-    </section>
+  .tabs{display:flex; align-items:center; gap:2px; flex:none}
+  .tabs button{
+    border:0; background:none; cursor:pointer; font-size:13px; color:var(--ink-3);
+    padding:6px 11px; border-radius:7px; white-space:nowrap;
+  }
+  .tabs button:hover{color:var(--ink); background:var(--surface-2)}
+  .tabs button[aria-current="true"]{color:var(--ink); font-weight:500; background:var(--surface-2)}
 
-    <!-- Map-->
-    <section class="map-section text-center">
-      <div id="map" style="height:780px"></div>
+  .mapctl{display:flex; align-items:center; gap:20px; margin-left:auto; min-width:0}
+  body:not([data-view="map"]) .mapctl{display:none}
 
-      <script>
-        // 1) Initialize map on Europe
-        var map = L.map('map', {
-          minZoom: 4,
-          maxZoom: 10,
-          scrollWheelZoom: false
-        }).setView([54, 10], 4);
+  .search{position:relative; width:300px}
+  .search input{
+    width:100%; height:34px; padding:0 30px 0 32px; font:inherit; font-size:13px;
+    border:1px solid var(--line-2); border-radius:8px; background:var(--surface); color:var(--ink); outline:none;
+  }
+  .search input:focus{border-color:var(--ink-3); background:var(--bg)}
+  .search svg{position:absolute; left:10px; top:9px; width:15px; height:15px; stroke:var(--ink-3); fill:none; stroke-width:2}
+  .search .clr{position:absolute; right:6px; top:6px; width:22px; height:22px; border:0; background:none; cursor:pointer; color:var(--ink-3); display:none; border-radius:5px}
+  .search .clr:hover{background:var(--surface-2)}
+  .count{font-size:12.5px; color:var(--ink-2); white-space:nowrap; font-variant-numeric:tabular-nums}
+  .count b{color:var(--ink); font-weight:600}
+  .reset{border:1px solid var(--line-2); background:var(--bg); border-radius:7px; height:30px; padding:0 12px; font-size:12.5px; cursor:pointer; color:var(--ink-2)}
+  .reset:hover{border-color:var(--ink-3); color:var(--ink)}
+  .reset[disabled]{opacity:.35; cursor:default}
 
-        L.tileLayer(
-          'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution:
-              '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, ' +
-              '&copy; <a href="https://carto.com/">CARTO</a>'
-          }
-        ).addTo(map);
+  main{display:grid; grid-template-columns:var(--rail) minmax(0,1fr); height:calc(100% - var(--head))}
+  body:not([data-view="map"]) main{grid-template-columns:minmax(0,1fr)}
+  body:not([data-view="map"]) .rail,
+  body:not([data-view="map"]) .stage{display:none}
 
-        // 2) Custom marker icon
-        var myicon = L.icon({
-          iconUrl: './assets/img/pin.svg',
-          iconSize: [20, 40]
-        });
+  /* ---------- content pages ---------- */
+  .page{display:none; overflow-y:auto; background:var(--bg)}
+  body[data-view="about"] #pageAbout,
+  body[data-view="data"] #pageData,
+  body[data-view="contact"] #pageContact{display:block}
+  .page .inner{max-width:660px; margin:0 auto; padding:60px 32px 96px}
+  .page h2{font-size:24px; font-weight:600; letter-spacing:-.018em; margin:0 0 18px; line-height:1.25}
+  .page h3{font-size:14px; font-weight:600; margin:38px 0 10px}
+  .page p{font-size:14.5px; line-height:1.68; color:var(--ink-2); margin:0 0 15px}
+  .page ul{margin:0 0 15px; padding-left:0; list-style:none}
+  .page li{
+    font-size:14.5px; line-height:1.6; color:var(--ink-2); padding:7px 0 7px 18px;
+    border-bottom:1px solid var(--line); position:relative;
+  }
+  .page li:before{content:""; position:absolute; left:2px; top:15px; width:4px; height:4px; border-radius:50%; background:var(--line-2)}
+  .page li b{font-weight:500; color:var(--ink)}
+  .page a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line-2)}
+  .page a:hover{border-color:var(--ink)}
+  .page .note{
+    font-size:13.5px; line-height:1.6; color:var(--ink-3); background:var(--surface);
+    border-radius:10px; padding:14px 16px; margin:22px 0 0;
+  }
+  .page .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px; color:var(--ink)}
+  .page .foot{margin-top:44px; padding-top:20px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-3); line-height:1.7}
+  .page .tomap{
+    display:inline-flex; align-items:center; gap:6px; margin-top:28px; border:1px solid var(--line-2);
+    background:var(--bg); border-radius:8px; height:36px; padding:0 15px; font-size:13.5px;
+    color:var(--ink-2); cursor:pointer;
+  }
+  .page .tomap:hover{border-color:var(--ink); color:var(--ink)}
 
-        // 3) Popup content
-        function onEachFeature(feature, layer) {
-          var p = feature.properties;
-          var html = '<div>' +
-                       '<h5>' + p.city + ', ' + p.country + '</h5>' +
-                       '<p>' +
-                         '<strong>Use case:</strong> ' + p.use_case + '<br/>' +
-                         '<strong>Mode:</strong> '     + p.mode     + '<br/>' +
-                         '<strong>Motivation:</strong> ' + (p.motivation || '—') + '<br/>' +
-                         '<strong>Stakeholder:</strong> ' + (p.stakeholder || '—') + '<br/>' +
-                         '<a href="' + p.link + '" target="_blank">Source</a>' +
-                       '</p>' +
-                     '</div>';
-          layer.bindPopup(html, {closeButton: true});
-        }
+  /* ---------- left rail ---------- */
+  .rail{border-right:1px solid var(--line); overflow-y:auto; background:var(--surface); padding-bottom:28px}
+  .fgroup{border-bottom:1px solid var(--line); padding:14px 16px 16px}
+  .fgroup h2{
+    font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--ink-3); margin:0 0 10px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .fgroup h2 button{border:0; background:none; font-size:11px; color:var(--ink-3); cursor:pointer; text-transform:none; letter-spacing:0; padding:0}
+  .fgroup h2 button:hover{color:var(--ink); text-decoration:underline}
+  .facet{
+    display:flex; align-items:center; gap:8px; width:100%; padding:5px 6px; border:0; background:none;
+    border-radius:6px; cursor:pointer; text-align:left; font-size:13px; color:var(--ink-2); line-height:1.35;
+    user-select:none;
+  }
+  .facet:hover{background:var(--surface-2)}
+  .facet:focus-visible{outline:2px solid var(--ink); outline-offset:-2px}
+  .facet .only{
+    font-size:11px; color:var(--ink-3); opacity:0; flex:none; padding:1px 5px;
+    border:1px solid var(--line-2); border-radius:4px; background:var(--bg);
+  }
+  .facet:hover .only{opacity:1}
+  .facet .only:hover{color:var(--ink); border-color:var(--ink-3)}
+  .facet .box{
+    width:14px; height:14px; border-radius:4px; border:1.5px solid var(--line-2);
+    background:var(--bg); flex:none; position:relative;
+  }
+  .facet:hover .box{border-color:var(--ink-3)}
+  .facet .dot{width:8px; height:8px; border-radius:50%; flex:none; background:var(--line-2)}
+  .facet .lbl{flex:1; min-width:0}
+  .facet .n{font-size:11.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; flex:none}
+  .facet[aria-checked="true"]{color:var(--ink)}
+  .facet[aria-checked="true"] .box{background:var(--bg); border-color:var(--ink-3)}
+  .facet[aria-checked="true"] .box::after{
+    content:""; position:absolute; left:3.5px; top:.5px; width:4px; height:8px;
+    border:solid var(--ink); border-width:0 2px 2px 0; transform:rotate(43deg);
+  }
+  .facet[aria-checked="false"] .lbl{color:var(--ink-3)}
+  .facet[aria-checked="false"] .dot{opacity:.3}
+  .facet.zero .n{opacity:.5}
 
-        // 4) Load all JSON files listed in manifest.json
-        async function loadAllData() {
-          // fetch manifest.json
-          var files = await fetch('assets/data/manifest.json').then(res => res.json());
+  /* ---------- year range slider ---------- */
+  .yr-read{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:0 6px; margin-bottom:5px}
+  .yr-read .span{font-size:12.5px; color:var(--ink-2); font-weight:400; font-variant-numeric:tabular-nums}
+  .yr-read .n{font-size:11.5px; color:var(--ink-3); font-variant-numeric:tabular-nums}
+  .slider{position:relative; height:24px; margin:0 10px}
+  .rail-track{position:absolute; left:0; right:0; top:10px; height:3px; background:var(--line-2); border-radius:2px}
+  .rail-fill{position:absolute; top:10px; height:3px; background:var(--ink); border-radius:2px}
+  .slider input[type=range]{
+    position:absolute; left:-8px; width:calc(100% + 16px); top:0; margin:0; height:24px;
+    -webkit-appearance:none; appearance:none; background:none; pointer-events:none;
+  }
+  .slider input[type=range]:focus{outline:none}
+  .slider input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none; pointer-events:auto; width:16px; height:16px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--ink); cursor:grab; box-shadow:0 1px 3px rgba(0,0,0,.16);
+  }
+  .slider input[type=range]::-webkit-slider-thumb:active{cursor:grabbing}
+  .slider input[type=range]::-moz-range-thumb{
+    pointer-events:auto; width:14px; height:14px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--ink); cursor:grab; box-shadow:0 1px 3px rgba(0,0,0,.16);
+  }
+  .slider input[type=range]::-moz-range-track{background:none}
 
-          var allFeatures = [];
-          for (var fname of files) {
-            if (!fname.endsWith('.json')) continue;
-            var data = await fetch('assets/data/' + fname).then(r => r.json());
-            // each file is an array of point‐features
-            Array.prototype.push.apply(allFeatures, data);
-          }
+  /* ---------- map ---------- */
+  .stage{position:relative; min-width:0}
+  #map{position:absolute; inset:0; background:#eeeeec}
+  .leaflet-container{font:inherit}
+  .leaflet-grab{cursor:default}
+  .leaflet-interactive{cursor:pointer}
+  .leaflet-dragging .leaflet-grab,
+  .leaflet-dragging .leaflet-grab .leaflet-interactive{cursor:grabbing}
+  /* ---------- hover card ---------- */
+  .hover{
+    position:absolute; z-index:600; width:352px; max-height:min(560px, calc(100% - 32px));
+    background:var(--bg); border:1px solid var(--line-2); border-radius:12px;
+    box-shadow:0 8px 30px rgba(0,0,0,.14), 0 2px 6px rgba(0,0,0,.06);
+    overflow:hidden; display:none; flex-direction:column;
+  }
+  .hover.on{display:flex}
+  .hv-head{
+    display:flex; align-items:center; gap:8px; padding:11px 14px;
+    border-bottom:1px solid var(--line); background:var(--surface); flex:none;
+  }
+  .hv-head h2{margin:0; font-size:13.5px; font-weight:600; letter-spacing:-.005em}
+  .hv-head .sub{font-size:11.5px; color:var(--ink-3); margin-left:auto; font-variant-numeric:tabular-nums}
+  .hv-head .pin{border:0; background:none; padding:0 0 0 4px; color:var(--ink-3); cursor:pointer; font-size:15px; line-height:1; display:none}
+  .hover.pinned .hv-head .pin{display:block}
+  .hover.pinned .hv-head .pin:hover{color:var(--ink)}
+  .hv-body{overflow-y:auto; overscroll-behavior:contain}
+  .hv-case{padding:13px 14px 14px; border-bottom:1px solid var(--line)}
+  .hv-case:last-child{border-bottom:0}
+  .hv-case h3{margin:0 0 6px; font-size:14px; font-weight:600; line-height:1.34; letter-spacing:-.006em}
+  .hv-line{font-size:12px; color:var(--ink-2); margin:0 0 3px; display:flex; align-items:center; gap:6px; flex-wrap:wrap}
+  .hv-line .md{width:8px; height:8px; border-radius:50%; flex:none}
+  .hv-line .sep{color:var(--line-2)}
+  .hv-place{font-weight:500; color:var(--ink)}
+  .hv-kv{font-size:12px; color:var(--ink-2); margin:7px 0 0; line-height:1.5}
+  .hv-kv b{font-weight:500; color:var(--ink-3)}
+  .hv-des{font-size:12px; color:var(--ink-3); margin:7px 0 0; line-height:1.5; border-left:2px solid var(--line); padding-left:9px}
+  .hv-case a.src{
+    display:inline-block; margin-top:10px; font-size:12px; color:var(--ink-2);
+    text-decoration:none; border-bottom:1px solid var(--line-2);
+  }
+  .hv-case a.src:hover{color:var(--ink); border-color:var(--ink)}
+  .hv-hint{padding:8px 14px; font-size:11px; color:var(--ink-3); background:var(--surface); border-top:1px solid var(--line); flex:none}
 
-          // 5) Group features by integer year
-          var byYear = {};
-          allFeatures.forEach(f => {
-            var y = Math.floor(+f.year);
-            if (!Number.isFinite(y)) return;
-            byYear[y] = byYear[y] || [];
-            byYear[y].push(f);
-          });
+  .idle{
+    position:absolute; left:50%; bottom:26px; transform:translateX(-50%); z-index:400;
+    background:rgba(255,255,255,.94); border:1px solid var(--line); border-radius:20px;
+    padding:7px 16px; font-size:12.5px; color:var(--ink-3); backdrop-filter:blur(6px); pointer-events:none;
+  }
 
-          // Build a continuous year range up to the current year
-          var yearsPresent = Object.keys(byYear).map(Number);
-          if (yearsPresent.length === 0) {
-            console.error('No year values found in data.');
-            return;
-          }
-          var minYear = Math.min.apply(null, yearsPresent);
-          var currentYear = new Date().getFullYear();
+  .loading{position:absolute; inset:0; display:grid; place-items:center; color:var(--ink-3); font-size:13px; background:var(--bg); z-index:9}
 
-          // 6) Build one L.geoJSON layer per year; include empty years too
-          var layers = [];
-          for (var y = minYear; y <= currentYear; y++) {
-            var feats = byYear[y] || [];
-            var layer = L.geoJSON(feats, {
-              pointToLayer: (feat, latlng) => L.marker(latlng, {icon: myicon}),
-              onEachFeature: onEachFeature
-            });
-            // IMPORTANT: store as UTC midnight to avoid timezone shifting the year
-            layer.options.time = new Date(Date.UTC(y, 0, 1));
-            layers.push(layer);
-          }
+  @media (max-width:1150px){ :root{--rail:260px} }
+</style>
+</head>
+<body data-view="map">
 
-          // 7) Initialize sliderControl
-          var multi = L.layerGroup(layers);
-          map.addLayer(multi);
+<header>
+  <button class="brand" data-nav="map"><h1>AI in Urban Mobility</h1></button>
+  <nav class="tabs" id="tabs">
+    <button data-nav="about">About</button>
+    <button data-nav="map">Map</button>
+    <button data-nav="data">Data</button>
+    <button data-nav="contact">Contact</button>
+  </nav>
+  <div class="mapctl" id="mapctl">
+    <div class="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search use case, city, country, stakeholder…" autocomplete="off" />
+      <button class="clr" id="qclr" aria-label="Clear search">&times;</button>
+    </div>
+    <div class="count" id="count">—</div>
+    <button class="reset" id="reset" disabled>Reset</button>
+  </div>
+</header>
 
-          var slider = L.control.sliderControl({
-            layer: multi,
-            alwaysShowDate: true,
-            showPopups: false,
-            showAllOnStart: true // start at current year (show all years up to now)
-          });
-          map.addControl(slider);
-          slider.startSlider();
-        }
+<main id="grid">
+  <aside class="rail" id="rail"></aside>
 
-        loadAllData().catch(console.error);
-      </script>
-    </section>
+  <div class="stage" id="stage">
+    <div id="map"></div>
+    <div class="idle" id="idle">Hover a dot for details · click to pin it</div>
+    <div class="hover" id="hover"></div>
+    <div class="loading" id="loading">Loading…</div>
+  </div>
 
-    <!-- Data-->
-    <section class="data-section bg-mine text-center" id="data">
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-lg-10">
-            <h2 class="text-white mb-4">Data</h2>
-            <p class="text-white-80 mb-3">
-              You can download the data in JSON format <a href="https://github.com/caimeng2/UrbMobAI/tree/master/assets/data" target="_blank">here</a> and use it for your own project.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section class="page" id="pageAbout"><div class="inner">
+    <h2>About this work</h2>
+    <p>Artificial intelligence is changing how cities move. While there has been plenty of discussion about AI technologies and their applications, it has been harder to see the bigger picture: where, when, how, why, and by whom AI is being adopted in urban transportation systems.</p>
+    <p>This project brings that picture into focus. It maps out:</p>
+    <ul>
+      <li>Where AI is being implemented geographically</li>
+      <li>When adoption is taking place</li>
+      <li>How AI is integrated (i.e., the use cases)</li>
+      <li>Which transportation modes are involved</li>
+      <li>Why AI is deployed (i.e., motivations)</li>
+      <li>Who the key stakeholders driving change are</li>
+    </ul>
+    <p>The map and dataset here are up to date as of the end of 2025. The goal is to update them regularly as time and capacity allow. Ultimately I envision this project as a living archive of AI adoption in urban mobility, a resource that can grow over time to track new deployments, shifting use cases, and broader trends.</p>
+    <div class="note">Read the publication in <a href="https://open-research-europe.ec.europa.eu/articles/6-70" target="_blank" rel="noopener">Open Research Europe</a> · <span class="mono">doi.org/10.12688/openreseurope.23222.1</span></div>
+    <button class="tomap" data-nav="map">&larr; Back to the map</button>
+  </div></section>
 
-    <!-- Contact-->
-    <section class="contact-section bg-mine text-center" id="contact">
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-lg-10">
-            <h2 class="text-white mb-4">Contact</h2>
-            <p class="text-white-80 mb-3" align="center">
-              mengcai24601(at)gmail(dot)com
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="social d-flex justify-content-center">
-        <a class="mx-2" href="https://github.com/caimeng2/" target="_blank"><i class="fab fa-github"></i></a>
-      </div>
-    </section>
+  <section class="page" id="pageData"><div class="inner">
+    <h2>Data</h2>
+    <p>You are welcome to download the data in JSON format and use it in your own project, provided that a citation is included.</p>
+    <p><a href="https://github.com/caimeng2/UrbMobAI/tree/master/assets/data" target="_blank" rel="noopener">Download the dataset on GitHub &nearr;</a></p>
+    <div class="note" id="dataStats">—</div>
+    <button class="tomap" data-nav="map">&larr; Back to the map</button>
+  </div></section>
 
-    <!-- Footer-->
-    <footer class="footer bg-mine small text-center text-white-50">
-      <div class="container px-4 px-lg-5">Copyright &copy; Meng Cai 2026</div>
-      <div class="container px-4 px-lg-5"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" target="_blank"></a>  This work is licensed under <a rel="license" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.</div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-  </body>
+  <section class="page" id="pageContact"><div class="inner">
+    <h2>Contact</h2>
+    <p class="mono">mengcai24601(at)gmail(dot)com</p>
+    <p><a href="https://github.com/caimeng2/" target="_blank" rel="noopener">github.com/caimeng2 &nearr;</a></p>
+    <div class="foot">
+      Copyright © Meng Cai 2026<br />
+      This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.
+    </div>
+    <button class="tomap" data-nav="map">&larr; Back to the map</button>
+  </div></section>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+"use strict";
+
+var MODES = {
+  road:        { label:"Road",        color:"#2a78d6" },
+  rail:        { label:"Rail",        color:"#7c5cd6" },
+  air:         { label:"Air",         color:"#eb6834" },
+  waterborne:  { label:"Waterborne",  color:"#1baf7a" },
+  cross_modal: { label:"Cross-modal", color:"#eda100" }
+};
+function modeColor(m){ return (MODES[m] && MODES[m].color) || "#8b8b93"; }
+function modeLabel(m){ return (MODES[m] && MODES[m].label) || m; }
+
+var DATA = [], CITIES = [], YMIN = 0, YMAX = 0, map, layer, markerByKey = {};
+var ALL = { cat: [], mode: [] };
+var state = { cat:[], mode:[], yr:null, q:"" };
+var pinned = null, hoverKey = null, hideTimer = null, rowsNow = [];
+var VIEWS = ["map", "about", "data", "contact"], view = "map";
+
+var PATHS = [
+  "assets/data/master20260807geocoded.json",
+  "data/master20260807geocoded.json"
+];
+
+function load(i){
+  i = i || 0;
+  if (i >= PATHS.length){
+    document.getElementById("loading").textContent =
+      "Could not load assets/data/master20260807geocoded.json.";
+    return;
+  }
+  fetch(PATHS[i]).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(init)
+    .catch(function(){ load(i+1); });
+}
+
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+function init(rows){
+  DATA = rows.map(function(r){
+    var parts = String(r.geo_name || "").split(",");
+    return {
+      title: r.use_case || r.link_title || "Untitled",
+      cat: r.uc_category || "Uncategorised",
+      city: r.city_clean || "Unknown",
+      country: parts[parts.length-1].trim() || "Unknown",
+      mode: r.mode || "unknown",
+      year: +r.year || null,
+      motivation: (r.motivation || "").trim(),
+      stakeholder: (r.stakeholder || "").trim(),
+      des: (r.link_des || "").trim(),
+      geo: (r.geo_name || "").trim(),
+      link: r.link || "",
+      lat: +r.geo_lat, lon: +r.geo_lon,
+      hay: [r.use_case, r.city_clean, r.stakeholder, r.motivation, r.uc_category, r.geo_name].join(" ").toLowerCase()
+    };
+  }).filter(function(r){ return isFinite(r.lat) && isFinite(r.lon); });
+
+  var ys = DATA.map(function(r){ return r.year; }).filter(Boolean);
+  YMIN = Math.min.apply(null, ys);
+  YMAX = Math.max.apply(null, ys);
+  state.yr = [YMIN, YMAX];
+
+  var seenC = {}, seenM = {};
+  DATA.forEach(function(r){ seenC[r.cat] = (seenC[r.cat]||0)+1; seenM[r.mode] = (seenM[r.mode]||0)+1; });
+  ALL.cat = Object.keys(seenC).sort(function(a,b){ return seenC[b]-seenC[a] || a.localeCompare(b); });
+  ALL.mode = Object.keys(MODES).filter(function(k){ return seenM[k]; })
+    .sort(function(a,b){ return seenM[b]-seenM[a]; });
+  state.cat = ALL.cat.slice();
+  state.mode = ALL.mode.slice();
+
+  var byCity = {};
+  DATA.forEach(function(r){
+    var k = r.city + "|" + r.country;
+    if (!byCity[k]) byCity[k] = { key:k, city:r.city, country:r.country, lat:r.lat, lon:r.lon };
+    r.ckey = k;
+  });
+  CITIES = Object.keys(byCity).map(function(k){ return byCity[k]; });
+
+  buildMap();
+  readHash();
+  renderDataStats();
+  setView(view);
+  render();
+  var l = document.getElementById("loading");
+  if (l) l.remove();
+}
+
+/* ---------------- filtering ---------------- */
+
+function matches(r, skip){
+  if (skip !== "cat"  && state.cat.indexOf(r.cat) < 0) return false;
+  if (skip !== "mode" && state.mode.indexOf(r.mode) < 0) return false;
+  if (skip !== "yr"   && state.yr && r.year && (r.year < state.yr[0] || r.year > state.yr[1])) return false;
+  if (state.q && r.hay.indexOf(state.q) < 0) return false;
+  return true;
+}
+function visible(){ return DATA.filter(function(r){ return matches(r); }); }
+function tally(field, skip){
+  var m = {};
+  DATA.forEach(function(r){ if (matches(r, skip)) m[r[field]] = (m[r[field]]||0) + 1; });
+  return m;
+}
+function yearRangeIsFull(){ return !state.yr || (state.yr[0] === YMIN && state.yr[1] === YMAX); }
+function allOn(key){ return state[key].length === ALL[key].length; }
+function active(){ return !allOn("cat") || !allOn("mode") || !yearRangeIsFull() || state.q; }
+
+/* ---------------- map ---------------- */
+
+function buildMap(){
+  map = L.map("map", { zoomControl:false, minZoom:3, worldCopyJump:false })
+        .setView([52.0, 12.0], 4);
+  L.control.zoom({ position:"bottomright" }).addTo(map);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
+    attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:"abcd", maxZoom:19
+  }).addTo(map);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png", {
+    subdomains:"abcd", maxZoom:19, pane:"shadowPane"
+  }).addTo(map);
+  layer = L.layerGroup().addTo(map);
+  map.on("click", unpin);
+  map.on("movestart zoomstart", function(){ if (!pinned) hideCard(); });
+  map.on("move zoom", function(){ if (pinned) positionCard(markerByKey[pinned]); });
+}
+
+function dominantMode(rows){
+  var m = {}, best = null, n = 0;
+  rows.forEach(function(r){ m[r.mode] = (m[r.mode]||0)+1; if (m[r.mode] > n){ n = m[r.mode]; best = r.mode; } });
+  return best;
+}
+
+function drawMarkers(rows){
+  layer.clearLayers();
+  markerByKey = {};
+  var group = {};
+  rows.forEach(function(r){ (group[r.ckey] = group[r.ckey] || []).push(r); });
+
+  Object.keys(group).forEach(function(k){
+    var rs = group[k], c = rs[0];
+    var modes = {};
+    rs.forEach(function(r){ modes[r.mode] = 1; });
+    var mk = Object.keys(modes);
+    var col = mk.length === 1 ? modeColor(mk[0]) : modeColor(dominantMode(rs));
+    var rad = 6 + Math.sqrt(rs.length - 1) * 5;
+    var sel = pinned === k;
+
+    var m = L.circleMarker([c.lat, c.lon], {
+      radius: rad,
+      color: sel ? "#18181b" : "#ffffff",
+      weight: sel ? 2.5 : 1.5,
+      fillColor: col,
+      fillOpacity: sel ? .95 : .8
+    });
+    m._key = k;
+    m._rad = rad;
+
+    m.on("mouseover", function(){
+      if (pinned) return;
+      clearTimeout(hideTimer);
+      showCard(k, m);
+      m.setStyle({ weight: 2.5, color: "#18181b" });
+    });
+    m.on("mouseout", function(){
+      if (pinned) return;
+      m.setStyle({ weight: 1.5, color: "#ffffff" });
+      scheduleHide();
+    });
+    m.on("click", function(e){
+      L.DomEvent.stop(e);
+      if (pinned === k){ unpin(); return; }
+      pinned = k;
+      showCard(k, m);
+      drawMarkers(rowsNow);
+    });
+
+    m.addTo(layer);
+    markerByKey[k] = m;
+  });
+}
+
+/* ---------------- hover card ---------------- */
+
+function caseBlock(r){
+  return '<div class="hv-case">' +
+    '<h3>' + esc(r.title) + '</h3>' +
+    '<p class="hv-line"><span class="hv-place">' + esc(r.city) + ', ' + esc(r.country) + '</span>' +
+      '<span class="sep">·</span><span>' + (r.year || "n/d") + '</span></p>' +
+    '<p class="hv-line"><span class="md" style="background:' + modeColor(r.mode) + '"></span>' +
+      '<span>' + esc(r.cat) + '</span><span class="sep">·</span><span>' + esc(modeLabel(r.mode)) + '</span></p>' +
+    (r.stakeholder ? '<p class="hv-kv"><b>Stakeholder:</b> ' + esc(r.stakeholder) + '</p>' : "") +
+    (r.motivation ? '<p class="hv-kv"><b>Motivation:</b> ' + esc(r.motivation) + '</p>' : "") +
+    (r.des ? '<p class="hv-des">' + esc(r.des) + '</p>' : "") +
+    (r.link ? '<a class="src" href="' + esc(r.link) + '" target="_blank" rel="noopener">Source &rarr;</a>' : "") +
+  '</div>';
+}
+
+function showCard(key, marker){
+  var rs = rowsNow.filter(function(r){ return r.ckey === key; })
+    .sort(function(a,b){ return (b.year||0) - (a.year||0); });
+  if (!rs.length) return;
+
+  var c = CITIES.filter(function(x){ return x.key === key; })[0];
+  var el = document.getElementById("hover");
+
+  el.innerHTML =
+    '<div class="hv-head"><h2>' + esc(c ? c.city : rs[0].city) + '</h2>' +
+      '<span class="sub">' + rs.length + (rs.length === 1 ? " use case" : " use cases") + '</span>' +
+      '<button class="pin" id="hvClose" aria-label="Close">&times;</button></div>' +
+    '<div class="hv-body">' + rs.map(caseBlock).join("") + '</div>' +
+    (pinned ? "" : '<div class="hv-hint">Click the dot to pin this card</div>');
+
+  hoverKey = key;
+  el.classList.add("on");
+  el.classList.toggle("pinned", !!pinned);
+  var x = document.getElementById("hvClose");
+  if (x) x.onclick = unpin;
+  positionCard(marker);
+}
+
+function positionCard(marker){
+  if (!marker) return;
+  var el = document.getElementById("hover");
+  var stage = document.getElementById("stage");
+  var sw = stage.clientWidth, sh = stage.clientHeight;
+  if (!sw || !sh) return;
+  var p = map.latLngToContainerPoint(marker.getLatLng());
+  var w = el.offsetWidth || 352, h = el.offsetHeight || 300;
+  var gap = marker._rad + 14;
+
+  var left = p.x + gap;
+  if (left + w > sw - 12) left = p.x - gap - w;
+  if (left < 12) left = Math.min(Math.max(12, p.x - w / 2), sw - w - 12);
+
+  var top = p.y - h / 2;
+  if (top < 12) top = 12;
+  if (top + h > sh - 12) top = Math.max(12, sh - h - 12);
+
+  el.style.left = Math.round(left) + "px";
+  el.style.top = Math.round(top) + "px";
+}
+
+function scheduleHide(){
+  clearTimeout(hideTimer);
+  hideTimer = setTimeout(hideCard, 220);
+}
+function hideCard(){
+  if (pinned) return;
+  hoverKey = null;
+  document.getElementById("hover").classList.remove("on");
+}
+function unpin(){
+  if (!pinned) return;
+  pinned = null;
+  document.getElementById("hover").classList.remove("on", "pinned");
+  hoverKey = null;
+  drawMarkers(rowsNow);
+}
+
+/* ---------------- views ---------------- */
+
+function setView(v){
+  if (VIEWS.indexOf(v) < 0) v = "map";
+  view = v;
+  document.body.dataset.view = v;
+
+  var tabs = document.getElementById("tabs").querySelectorAll("button");
+  [].forEach.call(tabs, function(b){
+    b.setAttribute("aria-current", b.dataset.nav === v ? "true" : "false");
+  });
+
+  if (v === "map" && map && map.invalidateSize){
+    setTimeout(function(){
+      map.invalidateSize();
+      if (pinned && markerByKey[pinned]) positionCard(markerByKey[pinned]);
+    }, 0);
+  }
+  writeHash();
+}
+
+function renderDataStats(){
+  var cities = {}, countries = {};
+  DATA.forEach(function(r){ cities[r.city + "|" + r.country] = 1; countries[r.country] = 1; });
+  var el = document.getElementById("dataStats");
+  if (el) el.textContent = DATA.length + " records · " + Object.keys(cities).length +
+    " cities · " + Object.keys(countries).length + " countries · " + YMIN + "–" + YMAX;
+}
+
+/* ---------------- left rail ---------------- */
+
+function yearGroup(){
+  var lo = state.yr[0], hi = state.yr[1];
+  var span = Math.max(1, YMAX - YMIN);
+  var l = (lo - YMIN) / span * 100, w = (hi - lo) / span * 100;
+  var n = DATA.filter(function(r){ return matches(r); }).length;
+
+  return '<div class="fgroup">' +
+    '<h2>Year' + (yearRangeIsFull() ? "" : '<button data-clear="yr">reset</button>') + '</h2>' +
+    '<div class="yr-read"><span class="span">' + (lo === hi ? lo : lo + "–" + hi) + '</span>' +
+      '<span class="n">' + n + '</span></div>' +
+    '<div class="slider">' +
+      '<div class="rail-track"></div>' +
+      '<div class="rail-fill" style="left:' + l + '%; width:' + w + '%"></div>' +
+      '<input type="range" id="yLo" min="' + YMIN + '" max="' + YMAX + '" step="1" value="' + lo + '" aria-label="Earliest year" />' +
+      '<input type="range" id="yHi" min="' + YMIN + '" max="' + YMAX + '" step="1" value="' + hi + '" aria-label="Latest year" />' +
+    '</div>' +
+  '</div>';
+}
+
+function facetList(title, field, key, labelMap, colored){
+  var counts = tally(field, key);
+  var keys = ALL[key];
+  var sel = state[key];
+  var every = sel.length === keys.length;
+
+  var h = '<div class="fgroup"><h2>' + title +
+    '<button data-all="' + key + '">' + (every ? "None" : "All") + '</button></h2>';
+  keys.forEach(function(k){
+    var n = counts[k] || 0;
+    var on = sel.indexOf(k) >= 0;
+    h += '<div class="facet' + (n ? "" : " zero") + '" role="checkbox" tabindex="0" aria-checked="' + on + '"' +
+         ' data-f="' + key + '" data-v="' + esc(k) + '">' +
+         '<span class="box"></span>' +
+         (colored ? '<span class="dot" style="background:' + modeColor(k) + '"></span>' : "") +
+         '<span class="lbl">' + esc(labelMap ? modeLabel(k) : k) + '</span>' +
+         '<span class="only" data-only="' + key + '" data-onlyv="' + esc(k) + '">only</span>' +
+         '<span class="n">' + n + '</span></div>';
+  });
+  return h + "</div>";
+}
+
+function renderRail(){
+  document.getElementById("rail").innerHTML =
+    yearGroup() +
+    facetList("Transport mode", "mode", "mode", MODES, true) +
+    facetList("Use case category", "cat", "cat", null, false);
+  wireSlider();
+}
+
+function wireSlider(){
+  var lo = document.getElementById("yLo"), hi = document.getElementById("yHi");
+  if (!lo || !hi) return;
+  var fill = document.querySelector(".rail-fill");
+  var span = Math.max(1, YMAX - YMIN);
+
+  function preview(){
+    var a = Math.min(+lo.value, +hi.value), b = Math.max(+lo.value, +hi.value);
+    if (fill){
+      fill.style.left = ((a - YMIN) / span * 100) + "%";
+      fill.style.width = ((b - a) / span * 100) + "%";
+    }
+    var saved = state.yr;
+    state.yr = [a, b];
+    var n = visible().length;
+    state.yr = saved;
+
+    var out = document.querySelector(".yr-read .span");
+    if (out) out.textContent = (a === b) ? String(a) : (a + "–" + b);
+    var cnt = document.querySelector(".yr-read .n");
+    if (cnt) cnt.textContent = n;
+    document.getElementById("count").innerHTML = "<b>" + n + "</b> of " + DATA.length + " use cases";
+  }
+  function commit(){
+    state.yr = [Math.min(+lo.value, +hi.value), Math.max(+lo.value, +hi.value)];
+    render();
+  }
+  [lo, hi].forEach(function(el){
+    el.addEventListener("input", preview);
+    el.addEventListener("change", commit);
+  });
+}
+
+function render(){
+  var rows = visible();
+  rowsNow = rows;
+
+  if (pinned && !rows.some(function(r){ return r.ckey === pinned; })) unpin();
+
+  renderRail();
+  drawMarkers(rows);
+
+  if (pinned && markerByKey[pinned]) showCard(pinned, markerByKey[pinned]);
+  else hideCard();
+
+  document.getElementById("count").innerHTML = "<b>" + rows.length + "</b> of " + DATA.length + " use cases";
+  document.getElementById("reset").disabled = !active();
+
+  var idle = document.getElementById("idle");
+  if (!rows.length){
+    idle.textContent = active() ? "Nothing selected — tick a box to bring results back" : "No data";
+  } else {
+    idle.textContent = "Hover a dot for details · click to pin it";
+  }
+  writeHash();
+}
+
+/* ---------------- interaction ---------------- */
+
+function toggle(arr, v){ var i = arr.indexOf(v); if (i < 0) arr.push(v); else arr.splice(i, 1); }
+
+document.addEventListener("click", function(e){
+  var v = e.target.closest("[data-nav]");
+  if (v){ setView(v.dataset.nav); return; }
+
+  var o = e.target.closest("[data-only]");
+  if (o){ state[o.dataset.only] = [o.dataset.onlyv]; render(); return; }
+
+  var a = e.target.closest("[data-all]");
+  if (a){
+    var k = a.dataset.all;
+    state[k] = allOn(k) ? [] : ALL[k].slice();
+    render();
+    return;
+  }
+
+  var f = e.target.closest("[data-f]");
+  if (f){ toggle(state[f.dataset.f], f.dataset.v); render(); return; }
+
+  var c = e.target.closest("[data-clear]");
+  if (c){ if (c.dataset.clear === "yr") state.yr = [YMIN, YMAX]; render(); return; }
+});
+
+document.addEventListener("keydown", function(e){
+  if (e.key !== "Enter" && e.key !== " ") return;
+  var f = e.target.closest && e.target.closest('[role="checkbox"][data-f]');
+  if (!f) return;
+  e.preventDefault();
+  toggle(state[f.dataset.f], f.dataset.v);
+  render();
+});
+
+var hoverEl = document.getElementById("hover");
+hoverEl.addEventListener("mouseenter", function(){ clearTimeout(hideTimer); });
+hoverEl.addEventListener("mouseleave", function(){ if (!pinned) scheduleHide(); });
+
+var qEl = document.getElementById("q"), t;
+qEl.addEventListener("input", function(){
+  clearTimeout(t);
+  document.getElementById("qclr").style.display = qEl.value ? "block" : "none";
+  t = setTimeout(function(){ state.q = qEl.value.trim().toLowerCase(); render(); }, 160);
+});
+document.getElementById("qclr").onclick = function(){
+  qEl.value = ""; state.q = ""; this.style.display = "none"; render();
+};
+document.getElementById("reset").onclick = function(){
+  state = { cat:ALL.cat.slice(), mode:ALL.mode.slice(), yr:[YMIN, YMAX], q:"" };
+  pinned = null;
+  qEl.value = ""; document.getElementById("qclr").style.display = "none";
+  map.setView([52.0, 12.0], 4);
+  render();
+};
+document.addEventListener("keydown", function(e){
+  if (e.key === "Escape"){ if (pinned) unpin(); else hideCard(); }
+  if (e.key === "/" && view === "map" && document.activeElement !== qEl){ e.preventDefault(); qEl.focus(); }
+});
+
+/* ---------------- shareable URL ---------------- */
+
+function writeHash(){
+  var p = new URLSearchParams();
+  if (!allOn("cat")) p.set("cat", state.cat.join("~") || "none");
+  if (!allOn("mode")) p.set("mode", state.mode.join("~") || "none");
+  if (!yearRangeIsFull()) p.set("yr", state.yr[0] + "-" + state.yr[1]);
+  if (state.q) p.set("q", state.q);
+  if (pinned) p.set("city", pinned);
+  if (view !== "map") p.set("view", view);
+  var s = p.toString();
+  history.replaceState(null, "", s ? "#" + s : location.pathname);
+}
+function readHash(){
+  var p = new URLSearchParams(location.hash.slice(1));
+  if (p.get("cat")) state.cat = p.get("cat") === "none" ? [] : p.get("cat").split("~");
+  if (p.get("mode")) state.mode = p.get("mode") === "none" ? [] : p.get("mode").split("~");
+  if (p.get("yr")){
+    var v = p.get("yr").split("-").map(Number);
+    if (v.length === 2 && isFinite(v[0]) && isFinite(v[1])) state.yr = [v[0], v[1]];
+  }
+  if (p.get("q")){ state.q = p.get("q"); qEl.value = state.q; document.getElementById("qclr").style.display = "block"; }
+  if (p.get("city")) pinned = p.get("city");
+  if (p.get("view") && VIEWS.indexOf(p.get("view")) >= 0) view = p.get("view");
+}
+
+load();
+})();
+</script>
+</body>
 </html>
