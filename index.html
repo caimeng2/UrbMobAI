@@ -480,10 +480,10 @@ function buildMap(){
   map = L.map("map", { zoomControl:false, minZoom:3, worldCopyJump:false })
         .setView([52.0, 12.0], 4);
   L.control.zoom({ position:"bottomright" }).addTo(map);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png?key=cb1_2ne4_1_cde2d4b4c837c0cc1b034f51", {
     attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:"abcd", maxZoom:19
   }).addTo(map);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png", {
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png?key=cb1_2ne4_1_cde2d4b4c837c0cc1b034f51", {
     subdomains:"abcd", maxZoom:19, pane:"shadowPane"
   }).addTo(map);
   layer = L.layerGroup().addTo(map);
